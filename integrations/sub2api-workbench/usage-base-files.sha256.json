@@ -1,0 +1,12 @@
+{
+  "backend/internal/repository/http_upstream.go": "c685cbdd1447d30ee6c09f7f120154c3dfe496435817a085ded7f4754b4dbc01",
+  "backend/internal/server/middleware/api_key_auth.go": "a02d6f515a9daf52b169cac3e6612e9f91a94109e6a1bfb99cbedaec74f02b16",
+  "backend/internal/server/middleware/api_key_auth_google.go": "cebef1a9ac784fa34e5b1c69d9153c265721e0c8f45cd6533873cae545fabeb7",
+  "backend/internal/server/router.go": "61598223e80a2646e4b5d3cb3f5a92bb476e542341ce8b689028377e969720fa",
+  "backend/internal/workbench/audit.go": "54bbefe1317c2304f5462b8915595b8a161a7677172bdffee24dd77106eec4f5",
+  "backend/internal/workbench/keys.go": "838f695a9e32b71709f5ee893a89164d7b0eb6bb564e0a269c0fa00358f6fc51",
+  "backend/internal/workbench/schema.sql": "93d7548c35cced57e84839cc93744cbfcceba29116a10974f72a5988f1d14ee3",
+  "backend/internal/workbench/workbench.go": "6d0078bd4efc6ed330e353a66c35c9c4923f5764b3e256da2e67c7576e90e0cc",
+  "backend/internal/workbench/workbench_test.go": "506658aede675ece443c63963ca3657f1c3bcb59729d9bca75328ce0512f05c3",
+  "backend/internal/repository/image_task_store.go": "198dbd0b3e222d05a1511c548712a41ce267a7e67640950940775fdeada65220"
+}

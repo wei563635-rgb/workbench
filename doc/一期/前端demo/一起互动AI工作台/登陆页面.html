@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>登录 - 一起互动 AI 工作台</title>
+    <meta name="description" content="一起互动 AI 工作台 — 公司内部 AI 工具统一平台">
+    <link rel="stylesheet" href="login.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="login-page">
+
+    <!-- Animated Background -->
+    <div class="bg-canvas">
+        <div class="orb orb-1"></div>
+        <div class="orb orb-2"></div>
+        <div class="orb orb-3"></div>
+    </div>
+
+    <div class="login-split-layout">
+
+        <!-- ═══ Left Side ═══ -->
+        <div class="login-left-brand">
+            <div class="brand-content">
+
+                <!-- Logo -->
+                <div class="brand-logo">
+                    一起互动AI工作台
+                </div>
+
+                <!-- Bold Headline -->
+                <h1 class="hero-title">
+                    <div class="hero-line text-solid">驱动业务进化</div>
+                    <div class="hero-line text-gradient">构筑智能引擎</div>
+                </h1>
+
+                <!-- Stylized Description -->
+                <div class="brand-desc-wrapper">
+                    <p class="brand-desc">
+                        打破部门壁垒，重构业务效能。
+                        平台深度整合前沿 AI 技术，打通市场洞察、视觉创作、运营决策与组织协同，为全域增长注入无限可能。
+                    </p>
+                </div>
+
+                <!-- Dramatic Stats -->
+                <div class="brand-stats">
+                    <div class="stat-item">
+                        <p class="stat-label">效能提升</p>
+                        <h3>10<span>x</span></h3>
+                    </div>
+                    <div class="stat-item">
+                        <p class="stat-label">视野拓展</p>
+                        <h3>360<span>°</span></h3>
+                    </div>
+                    <div class="stat-item">
+                        <p class="stat-label">时刻响应</p>
+                        <h3>24<span>/7</span></h3>
+                    </div>
+                </div>
+
+
+
+            </div>
+        </div>
+
+        <!-- ═══ Right Side: Login Form ═══ -->
+        <div class="login-right-form">
+            <div class="form-glow-bg"></div>
+
+            <div class="login-box">
+
+                <!-- Header -->
+                <div class="login-header">
+                    <h2>登录工作台</h2>
+                    <p>使用您的企业账号访问内部 AI 工具平台</p>
+                </div>
+
+                <!-- Form -->
+                <form class="login-form" onsubmit="return false;">
+
+                    <div class="form-group">
+                        <label for="login-account">账号</label>
+                        <div class="input-wrapper">
+                            <input id="login-account" type="text" placeholder="输入企业邮箱或账号" autocomplete="username">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="login-password">密码</label>
+                        <div class="input-wrapper">
+                            <input id="login-password" type="password" placeholder="输入登录密码" autocomplete="current-password">
+                            <i class="fa-regular fa-eye btn-toggle-pwd" id="toggle-pwd"></i>
+                        </div>
+                    </div>
+
+                    <div class="form-actions">
+                        <label class="remember-me">
+                            <input type="checkbox" id="auto-login" checked>
+                            <span>7 天内免登录</span>
+                        </label>
+                        <a href="#" class="forgot-pwd">忘记密码？</a>
+                    </div>
+
+                    <button type="button" class="btn-login" id="btn-login" onclick="handleLogin()">
+                        进入工作台 &nbsp;<i class="fa-solid fa-arrow-right"></i>
+                    </button>
+
+                </form>
+
+                <div class="form-divider">
+                    <span>仅限一起互动内部员工使用</span>
+                </div>
+
+                <div class="login-footer">
+                    <p>首次登录请使用初始密码，登录后需修改</p>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        // Toggle password visibility
+        const toggleBtn = document.getElementById('toggle-pwd');
+        const pwdInput  = document.getElementById('login-password');
+        if (toggleBtn && pwdInput) {
+            toggleBtn.addEventListener('click', () => {
+                const isHidden = pwdInput.type === 'password';
+                pwdInput.type  = isHidden ? 'text' : 'password';
+                toggleBtn.className = isHidden
+                    ? 'fa-regular fa-eye-slash btn-toggle-pwd'
+                    : 'fa-regular fa-eye btn-toggle-pwd';
+            });
+        }
+
+        // Login with loading state
+        function handleLogin() {
+            const btn = document.getElementById('btn-login');
+            btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i>&nbsp; 登录中…';
+            btn.disabled  = true;
+            setTimeout(() => {
+                window.location.href = '工作台主页.html';
+            }, 800);
+        }
+    </script>
+
+</body>
+</html>

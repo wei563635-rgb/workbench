@@ -1,0 +1,202 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>问大家消费者洞察看板生成工具</title>
+  <style>
+    :root{font-family:Inter,"Microsoft YaHei",sans-serif;color:#e8eefc;background:#08101f}
+    *{box-sizing:border-box}
+    body{margin:0;background:radial-gradient(circle at 20% 0,#15284e 0,#08101f 42%,#050914 100%);min-height:100vh}
+    .wrap{max-width:1080px;margin:auto;padding:40px 24px}
+    .hero{margin-bottom:24px}
+    h1{font-size:32px;margin:0 0 10px}
+    .sub{color:#9fb0d0;line-height:1.7}
+    .card{background:rgba(14,27,52,.82);border:1px solid rgba(126,162,255,.22);border-radius:18px;padding:22px;margin:16px 0;box-shadow:0 18px 60px rgba(0,0,0,.25)}
+    .row{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+    label{display:block;color:#afc2e8;margin-bottom:8px}
+    input,select,button{width:100%;border-radius:10px;border:1px solid #30486e;background:#0c1930;color:#eef4ff;padding:12px}
+    button{cursor:pointer;background:linear-gradient(135deg,#3f7cff,#725cff);border:0;font-weight:700}
+    button.secondary{background:#142747;border:1px solid #35517b}
+    button:disabled{opacity:.5;cursor:not-allowed}
+    .status{padding:14px;border-radius:10px;background:#091427;color:#a9bde3;white-space:pre-wrap}
+    .mapping{display:grid;grid-template-columns:180px 1fr;gap:12px;align-items:center;margin:10px 0}
+    iframe{width:100%;height:720px;border:1px solid #2a4267;border-radius:12px;background:#fff}
+    .hidden{display:none}
+    .ok{color:#65e0a3}.err{color:#ff8d9a}
+    @media(max-width:720px){.row{grid-template-columns:1fr}.mapping{grid-template-columns:1fr}}
+  </style>
+</head>
+<body>
+<div class="wrap">
+  <div class="hero">
+    <h1>问大家消费者洞察看板生成工具</h1>
+    <div class="sub">上传不同格式的 Excel / CSV，确认“消费者问题”和“他人回答”字段，系统调用大模型生成 V31 看板。</div>
+  </div>
+
+  <div class="card">
+    <h2>1. 上传数据</h2>
+    <input id="file" type="file" accept=".xlsx,.xls,.csv">
+    <button id="uploadBtn" style="margin-top:12px">上传并识别字段</button>
+  </div>
+
+  <div id="mappingCard" class="card hidden">
+    <h2>2. 确认字段映射</h2>
+    <div id="mappingFields"></div>
+    <div class="row">
+      <div><label>产品名称</label><input id="productName" placeholder="可选"></div>
+      <div><label>品类</label><input id="category" placeholder="可选"></div>
+    </div>
+    <button id="generateBtn" style="margin-top:16px">生成看板</button>
+  </div>
+
+  <div class="card">
+    <h2>任务状态</h2>
+    <div id="status" class="status">等待上传数据。</div>
+  </div>
+
+  <div id="resultCard" class="card hidden">
+    <h2>生成结果</h2>
+    <div class="row" style="margin-bottom:14px">
+      <button id="previewBtn" class="secondary">刷新预览</button>
+      <button id="downloadBtn">下载单文件 HTML</button>
+    </div>
+    <iframe id="preview"></iframe>
+  </div>
+</div>
+
+<script>
+let fileId = "";
+let sheetName = "";
+let columns = [];
+let mappingId = "";
+let dashboardId = "";
+const params = new URLSearchParams(location.search);
+const runId = params.get("runId") || "";
+const projectId = params.get("projectId") || "";
+const storedUser = JSON.parse(localStorage.getItem("yiqi_ai_toolbench_user") || "{}");
+const userId = params.get("userId") || storedUser.id || "u_admin";
+const platformToken = localStorage.getItem("yiqi_ai_toolbench_token") || "";
+
+const standardFields = [
+  ["question","消费者问题（必填）"],
+  ["answer","他人回答（必填）"],
+  ["time","时间（可选）"],
+  ["productName","商品名称（可选）"],
+  ["sku","SKU（可选）"],
+  ["platform","平台（可选）"],
+  ["likes","点赞数（可选）"],
+  ["answerCount","回答数（可选）"]
+];
+
+function setStatus(text, type=""){
+  const el=document.getElementById("status");
+  el.textContent=text;
+  el.className="status "+type;
+}
+
+async function api(url, options={}){
+  options.headers = options.headers || {};
+  if(platformToken) options.headers.Authorization = `Bearer ${platformToken}`;
+  const res=await fetch(url, options);
+  const data=await res.json().catch(()=>({}));
+  if(!res.ok) throw new Error(data.detail || "请求失败");
+  return data;
+}
+
+document.getElementById("uploadBtn").onclick=async()=>{
+  try{
+    const file=document.getElementById("file").files[0];
+    if(!file) throw new Error("请选择文件");
+    setStatus("正在上传...");
+    const form=new FormData();
+    form.append("file",file);
+    form.append("runId",runId);
+    const up=await api("api/files/upload",{method:"POST",body:form});
+    fileId=up.fileId;
+    sheetName=Object.keys(up.sheets)[0];
+    columns=up.sheets[sheetName];
+
+    const detected=await api("api/fields/detect",{
+      method:"POST",
+      headers:{"Content-Type":"application/json"},
+      body:JSON.stringify({fileId,sheetName})
+    });
+
+    const holder=document.getElementById("mappingFields");
+    holder.innerHTML="";
+    for(const [key,label] of standardFields){
+      const row=document.createElement("div");
+      row.className="mapping";
+      const options=['<option value="">未选择</option>',...columns.map(c=>`<option value="${c}">${c}</option>`)].join("");
+      row.innerHTML=`<label>${label}</label><select data-field="${key}">${options}</select>`;
+      const select=row.querySelector("select");
+      if(detected.suggestedMapping[key]) select.value=detected.suggestedMapping[key];
+      holder.appendChild(row);
+    }
+    document.getElementById("mappingCard").classList.remove("hidden");
+    setStatus("字段识别完成，请确认映射。","ok");
+  }catch(err){setStatus(err.message,"err")}
+};
+
+document.getElementById("generateBtn").onclick=async()=>{
+  try{
+    const fieldMapping={};
+    document.querySelectorAll("[data-field]").forEach(el=>{
+      if(el.value) fieldMapping[el.dataset.field]=el.value;
+    });
+    if(!fieldMapping.question || !fieldMapping.answer) throw new Error("必须选择消费者问题和他人回答字段");
+
+    setStatus("正在确认字段映射...");
+    const confirmed=await api("api/fields/confirm",{
+      method:"POST",
+      headers:{"Content-Type":"application/json"},
+      body:JSON.stringify({fileId,sheetName,fieldMapping})
+    });
+    mappingId=confirmed.mappingId;
+
+    const task=await api("api/dashboards/generate",{
+      method:"POST",
+      headers:{"Content-Type":"application/json"},
+      body:JSON.stringify({
+        fileId,mappingId,runId,userId,projectId,
+        productName:document.getElementById("productName").value,
+        category:document.getElementById("category").value
+      })
+    });
+    pollTask(task.taskId);
+  }catch(err){setStatus(err.message,"err")}
+};
+
+async function pollTask(taskId){
+  const timer=setInterval(async()=>{
+    try{
+      const task=await api(`api/tasks/${taskId}`);
+      setStatus(`${task.message}\n进度：${task.progress}%`);
+      if(task.status==="success"){
+        clearInterval(timer);
+        dashboardId=task.dashboardId;
+        setStatus(`生成完成。质量分：${task.qualityScore ?? "未返回"}`,"ok");
+        document.getElementById("resultCard").classList.remove("hidden");
+        refreshPreview();
+      }else if(task.status==="failed"){
+        clearInterval(timer);
+        setStatus(`生成失败：${task.message}`,"err");
+      }
+    }catch(err){
+      clearInterval(timer);
+      setStatus(err.message,"err");
+    }
+  },2000);
+}
+
+function refreshPreview(){
+  document.getElementById("preview").src=`api/dashboards/${dashboardId}/html?ts=${Date.now()}`;
+}
+document.getElementById("previewBtn").onclick=refreshPreview;
+document.getElementById("downloadBtn").onclick=()=>{
+  location.href=`api/dashboards/${dashboardId}/download`;
+};
+</script>
+</body>
+</html>

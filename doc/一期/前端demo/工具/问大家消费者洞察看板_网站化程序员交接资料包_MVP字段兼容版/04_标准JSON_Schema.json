@@ -1,0 +1,391 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "问大家消费者洞察看板标准JSON Schema",
+  "type": "object",
+  "required": [
+    "meta",
+    "summary",
+    "details",
+    "decisionPoints",
+    "personas",
+    "dimensionMatrix",
+    "expressionDirections",
+    "testMatrix",
+    "detailEvidence",
+    "appendix",
+    "filters",
+    "validation"
+  ],
+  "properties": {
+    "meta": {
+      "type": "object",
+      "required": [
+        "projectName",
+        "dashboardType",
+        "productName",
+        "generatedAt",
+        "version"
+      ],
+      "properties": {
+        "projectName": {
+          "type": "string"
+        },
+        "dashboardType": {
+          "type": "string"
+        },
+        "productName": {
+          "type": "string"
+        },
+        "category": {
+          "type": "string"
+        },
+        "sourceFile": {
+          "type": "string"
+        },
+        "generatedAt": {
+          "type": "string"
+        },
+        "version": {
+          "type": "string"
+        },
+        "sampleData": {
+          "type": "boolean"
+        }
+      }
+    },
+    "summary": {
+      "type": "object",
+      "required": [
+        "totalRows",
+        "validRows",
+        "mainConclusion"
+      ],
+      "properties": {
+        "totalRows": {
+          "type": "integer"
+        },
+        "validRows": {
+          "type": "integer"
+        },
+        "mainConclusion": {
+          "type": "string"
+        },
+        "keyMetrics": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": [
+              "label",
+              "value"
+            ],
+            "properties": {
+              "label": {
+                "type": "string"
+              },
+              "value": {
+                "type": [
+                  "string",
+                  "number"
+                ]
+              },
+              "desc": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      }
+    },
+    "details": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "question",
+          "answer"
+        ],
+        "properties": {
+          "id": {
+            "type": [
+              "integer",
+              "string"
+            ]
+          },
+          "question": {
+            "type": "string"
+          },
+          "answer": {
+            "type": "string"
+          },
+          "time": {
+            "type": "string"
+          },
+          "productName": {
+            "type": "string"
+          },
+          "sku": {
+            "type": "string"
+          },
+          "platform": {
+            "type": "string"
+          },
+          "likes": {
+            "type": [
+              "integer",
+              "number",
+              "string"
+            ]
+          },
+          "answerCount": {
+            "type": [
+              "integer",
+              "number",
+              "string"
+            ]
+          },
+          "concernPoints": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "dimensions": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "personas": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "clusters": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "decisionStage": {
+            "type": "string"
+          },
+          "evidenceTags": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "decisionPoints": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "name",
+          "count",
+          "whyImportant",
+          "relatedDetailIds"
+        ],
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "count": {
+            "type": "integer"
+          },
+          "ratio": {
+            "type": "string"
+          },
+          "whyImportant": {
+            "type": "string"
+          },
+          "direction": {
+            "type": "string"
+          },
+          "examples": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "relatedDetailIds": {
+            "type": "array",
+            "items": {
+              "type": [
+                "integer",
+                "string"
+              ]
+            }
+          }
+        }
+      }
+    },
+    "personas": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "name",
+          "count",
+          "coreConcerns",
+          "relatedDetailIds"
+        ],
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "count": {
+            "type": "integer"
+          },
+          "ratio": {
+            "type": "string"
+          },
+          "coreConcerns": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "summary": {
+            "type": "string"
+          },
+          "relatedDetailIds": {
+            "type": "array",
+            "items": {
+              "type": [
+                "integer",
+                "string"
+              ]
+            }
+          }
+        }
+      }
+    },
+    "dimensionMatrix": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "expressionDirections": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "testMatrix": {
+      "type": "array",
+      "minItems": 4,
+      "items": {
+        "type": "object",
+        "required": [
+          "group",
+          "tests"
+        ],
+        "properties": {
+          "group": {
+            "type": "string"
+          },
+          "sampleCount": {
+            "type": "integer"
+          },
+          "whyThisGroup": {
+            "type": "string"
+          },
+          "tests": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": [
+                "title",
+                "sampleData",
+                "whyTest",
+                "direction",
+                "visual",
+                "metric",
+                "relatedDetailIds"
+              ],
+              "properties": {
+                "title": {
+                  "type": "string"
+                },
+                "sampleData": {
+                  "type": "string"
+                },
+                "whyTest": {
+                  "type": "string"
+                },
+                "pain": {
+                  "type": "string"
+                },
+                "direction": {
+                  "type": "string"
+                },
+                "visual": {
+                  "type": "string"
+                },
+                "metric": {
+                  "type": "string"
+                },
+                "relatedDetailIds": {
+                  "type": "array",
+                  "items": {
+                    "type": [
+                      "integer",
+                      "string"
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "detailEvidence": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "appendix": {
+      "type": "object"
+    },
+    "filters": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "validation": {
+      "type": "object",
+      "required": [
+        "isValid",
+        "warnings",
+        "errors"
+      ],
+      "properties": {
+        "isValid": {
+          "type": "boolean"
+        },
+        "warnings": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "errors": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}

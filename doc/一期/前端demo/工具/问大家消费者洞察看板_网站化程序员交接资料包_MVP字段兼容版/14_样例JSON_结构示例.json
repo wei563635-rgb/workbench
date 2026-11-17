@@ -1,0 +1,254 @@
+{
+  "meta": {
+    "projectName": "问大家消费者洞察与推广图测图策略看板",
+    "dashboardType": "qa_consumer_insight",
+    "productName": "样例产品",
+    "category": "样例品类",
+    "sourceFile": "sample.xlsx",
+    "generatedAt": "2026-06-04",
+    "version": "mvp-field-compatible-v1",
+    "sampleData": true
+  },
+  "summary": {
+    "totalRows": 3,
+    "validRows": 3,
+    "mainConclusion": "样例数据显示，消费者主要关注适用人群、效果验证和使用风险。",
+    "keyMetrics": [
+      {
+        "label": "有效问答数",
+        "value": 3,
+        "desc": "清洗后保留的 question / answer 明细数"
+      },
+      {
+        "label": "核心关注点",
+        "value": 3,
+        "desc": "根据样例数据归纳"
+      }
+    ]
+  },
+  "details": [
+    {
+      "id": 1,
+      "question": "这个敏感肌能用吗？",
+      "answer": "我用着还可以，不刺激，建议先小面积试用。",
+      "time": "",
+      "productName": "样例产品",
+      "sku": "",
+      "platform": "",
+      "likes": "",
+      "answerCount": "",
+      "concernPoints": [
+        "安全性",
+        "敏感肌适用"
+      ],
+      "dimensions": [
+        "自我匹配",
+        "风险消除"
+      ],
+      "personas": [
+        "敏感肌人群"
+      ],
+      "clusters": [
+        "适用人群"
+      ],
+      "decisionStage": "购买前风险确认",
+      "evidenceTags": [
+        "适用性回答"
+      ]
+    },
+    {
+      "id": 2,
+      "question": "多久能看到效果？",
+      "answer": "我大概用了几天感觉有改善，具体看个人情况。",
+      "concernPoints": [
+        "见效周期",
+        "效果验证"
+      ],
+      "dimensions": [
+        "效果/价值验证",
+        "预期管理"
+      ],
+      "personas": [
+        "效果敏感人群"
+      ],
+      "clusters": [
+        "效果周期"
+      ],
+      "decisionStage": "购买前效果确认",
+      "evidenceTags": [
+        "效果反馈"
+      ]
+    },
+    {
+      "id": 3,
+      "question": "脸上泛红的时候可以用吗？",
+      "answer": "我泛红时用过，感觉比较温和。",
+      "concernPoints": [
+        "泛红场景",
+        "温和性"
+      ],
+      "dimensions": [
+        "特殊场景",
+        "风险消除"
+      ],
+      "personas": [
+        "泛红修护人群"
+      ],
+      "clusters": [
+        "使用场景"
+      ],
+      "decisionStage": "场景适配确认",
+      "evidenceTags": [
+        "场景回答"
+      ]
+    }
+  ],
+  "decisionPoints": [
+    {
+      "name": "是否适合敏感肌/泛红场景",
+      "count": 2,
+      "ratio": "66.7%",
+      "whyImportant": "消费者在购买前首先确认自己是否适用，直接影响点击后是否继续了解。",
+      "direction": "需要在主图/详情页明确适用场景与温和表达。",
+      "examples": [
+        "这个敏感肌能用吗？",
+        "脸上泛红的时候可以用吗？"
+      ],
+      "relatedDetailIds": [
+        1,
+        3
+      ]
+    }
+  ],
+  "personas": [
+    {
+      "name": "敏感肌/泛红人群",
+      "count": 2,
+      "ratio": "66.7%",
+      "coreConcerns": [
+        "安全性",
+        "温和性",
+        "适用场景"
+      ],
+      "summary": "该人群优先关注能不能用、会不会刺激、泛红时是否适合。",
+      "relatedDetailIds": [
+        1,
+        3
+      ]
+    }
+  ],
+  "dimensionMatrix": [
+    {
+      "persona": "敏感肌/泛红人群",
+      "dimension": "风险消除",
+      "count": 2,
+      "relatedDetailIds": [
+        1,
+        3
+      ]
+    }
+  ],
+  "expressionDirections": [
+    {
+      "title": "温和适用表达",
+      "direction": "围绕敏感肌、泛红场景表达温和安全感",
+      "relatedDetailIds": [
+        1,
+        3
+      ]
+    }
+  ],
+  "testMatrix": [
+    {
+      "group": "通用人群｜核心价值/功效表达",
+      "sampleCount": 3,
+      "whyThisGroup": "通用人群覆盖最大流量池，应先测试核心价值表达。",
+      "tests": [
+        {
+          "title": "核心修护价值表达",
+          "sampleData": "3条样例均与适用性、效果、温和相关。",
+          "whyTest": "验证用户是否对核心价值有明确反应。",
+          "pain": "不知道是否值得购买。",
+          "direction": "表达产品核心价值和适用收益。",
+          "visual": "产品+核心场景+结果感。",
+          "metric": "点击率、加购率",
+          "relatedDetailIds": [
+            1,
+            2,
+            3
+          ]
+        },
+        {
+          "title": "温和安心表达",
+          "sampleData": "2条样例涉及敏感肌/泛红。",
+          "whyTest": "降低购买前风险顾虑。",
+          "pain": "担心刺激和不适用。",
+          "direction": "表达温和、安全、适用场景。",
+          "visual": "低刺激感场景+安心标签。",
+          "metric": "点击率、收藏加购率",
+          "relatedDetailIds": [
+            1,
+            3
+          ]
+        }
+      ]
+    },
+    {
+      "group": "细分人群A｜高顾虑/高价值表达",
+      "sampleCount": 2,
+      "whyThisGroup": "敏感肌人群风险顾虑明显。",
+      "tests": []
+    },
+    {
+      "group": "细分人群B｜高场景/高意向表达",
+      "sampleCount": 1,
+      "whyThisGroup": "泛红场景具备明确使用意图。",
+      "tests": []
+    },
+    {
+      "group": "细分人群C｜复合问题/差异化表达",
+      "sampleCount": 1,
+      "whyThisGroup": "效果周期与适用性叠加影响决策。",
+      "tests": []
+    }
+  ],
+  "detailEvidence": [
+    {
+      "module": "详情页适用人群说明",
+      "count": 2,
+      "ratio": "66.7%",
+      "why": "用户反复询问敏感肌、泛红是否可用。",
+      "evidence": [
+        "这个敏感肌能用吗？",
+        "脸上泛红的时候可以用吗？"
+      ],
+      "carry": "详情页增加适用场景、使用建议和风险提示。",
+      "relatedDetailIds": [
+        1,
+        3
+      ]
+    }
+  ],
+  "appendix": {
+    "note": "样例数据仅用于结构演示。"
+  },
+  "filters": [
+    {
+      "field": "personas",
+      "label": "人群"
+    },
+    {
+      "field": "dimensions",
+      "label": "关注维度"
+    },
+    {
+      "field": "clusters",
+      "label": "问题分类"
+    }
+  ],
+  "validation": {
+    "isValid": true,
+    "warnings": [],
+    "errors": []
+  }
+}

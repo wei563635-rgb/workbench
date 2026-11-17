@@ -1,0 +1,21 @@
+server {
+    listen 80;
+    listen [::]:80;
+    server_name your-domain.com www.your-domain.com _;
+
+    root /var/www/wendajia-dashboard;
+    index index.html;
+    charset utf-8;
+
+    access_log /var/log/nginx/wendajia.access.log;
+    error_log /var/log/nginx/wendajia.error.log;
+
+    location = /healthz {
+        default_type text/plain;
+        return 200 "ok\n";
+    }
+
+    location / {
+        try_files $uri $uri/ /index.html;
+    }
+}

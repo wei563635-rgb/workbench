@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>一起互动-AI工作台</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="dashboard.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+  <div class="app-container">
+    <!-- Dark Theme Background Elements -->
+    <div class="fluid-glow"></div>
+    <div class="grid-mask"></div>
+
+    <!-- Primary Sidebar -->
+    <nav class="sidebar-primary">
+      <div class="logo">
+        <div class="logo-icon"></div>
+        <span>一起互动AI工作台</span>
+      </div>
+      <ul class="nav-links" id="sidebar-nav">
+        <!-- 部门导航 -->
+        <li class="section-title" style="padding: 14px 20px 4px; font-size: 12px; color: #9CA3AF; text-transform: uppercase; letter-spacing: 1px;">AI工具</li>
+        <li class="active dept-link" data-target="dept-market"><a href="#dept-market"><i class="fa-solid fa-earth-americas"></i> AI 市场部</a></li>
+        <li class="dept-link" data-target="dept-design"><a href="#dept-design"><i class="fa-solid fa-pen-nib"></i> AI 设计部</a></li>
+        <li class="dept-link" data-target="dept-operation"><a href="#dept-operation"><i class="fa-solid fa-chart-line"></i> AI 运营部</a></li>
+        <li class="dept-link" data-target="dept-content"><a href="#dept-content"><i class="fa-solid fa-video"></i> AI 内容部</a></li>
+        <li class="dept-link" data-target="dept-hr"><a href="#dept-hr"><i class="fa-solid fa-users"></i> AI 人事部</a></li>
+        
+        <!-- 通用导航 -->
+        <li class="section-title" style="padding: 24px 20px 4px; font-size: 12px; color: #9CA3AF; text-transform: uppercase; letter-spacing: 1px;">通用</li>
+        <li><a href="项目页面.html"><i class="fa-solid fa-table-columns"></i> 项目</a></li>
+        <li><a href="项目看板页面.html"><i class="fa-solid fa-chart-pie"></i> 项目看板</a></li>
+        <li><a href="运行记录页面.html"><i class="fa-solid fa-clock-rotate-left"></i> 运行记录</a></li>
+        <li><a href="#"><i class="fa-solid fa-gear"></i> 配置中心</a></li>
+      </ul>
+      <div class="spacer"></div>
+      <div class="user-profile">
+        <div class="avatar">张</div>
+        <span class="user-name">张三 (管理员)</span>
+        <i class="fa-solid fa-user"></i>
+      </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      
+      <!-- New Hero Section -->
+      <div class="hero-section">
+        <div class="hero-greeting">
+          <div class="greeting-icon"></div>
+          <h1><span class="greeting-text">你好！</span>一起互动-AI工作台</h1>
+        </div>
+        
+        <div class="hero-card-container">
+          <div class="bg-tabs">
+            <div class="bg-tab tab-blue">市场情报</div>
+            <div class="bg-tab tab-red">推广图制作</div>
+            <div class="bg-tab tab-green">竞店分析</div>
+            <div class="bg-tab tab-purple">项目管理</div>
+          </div>
+          
+          <div class="hero-main-card">
+            <h2>开启智能工作新范式</h2>
+            <p>平台已集成四大业务线核心工具，请从下方选择对应的应用开启分析之旅。</p>
+            
+            <div class="hero-stats">
+              <div class="stat-item">
+                <div class="stat-num">12</div>
+                <div class="stat-label">已上线工具</div>
+              </div>
+              <div class="stat-divider"></div>
+              <div class="stat-item">
+                <div class="stat-num">4</div>
+                <div class="stat-label">赋能部门</div>
+              </div>
+              <div class="stat-divider"></div>
+              <div class="stat-item">
+                <div class="stat-num">120</div>
+                <div class="stat-label">赋能人数</div>
+              </div>
+              <div class="stat-divider"></div>
+              <div class="stat-item">
+                <div class="stat-num">56</div>
+                <div class="stat-label">已创建项目</div>
+              </div>
+              <div class="stat-divider"></div>
+              <div class="stat-item">
+                <div class="stat-num">1.2M</div>
+                <div class="stat-label">已消耗 Token</div>
+              </div>
+              <div class="stat-divider"></div>
+              <div class="stat-item">
+                <div class="stat-num">3,450</div>
+                <div class="stat-label">已生成图片</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="tools-section">
+        
+        <!-- AI 市场部 -->
+        <div id="dept-market" class="department-section" style="display: block;">
+          <div class="dept-header">
+            <h3>AI 市场部导航</h3>
+          </div>
+          <div class="tools-grid-new">
+            <div class="tool-item theme-blue">
+                <div class="squircle-icon bg-blue"><i class="fa-solid fa-earth-americas"></i></div>
+                <div class="tool-info">
+                    <h4>市场情报 <i class="fa-solid fa-angle-right"></i></h4>
+                    <p>蓝海商品池发现</p>
+                </div>
+            </div>
+            <div class="tool-item theme-purple">
+                <div class="squircle-icon bg-purple"><i class="fa-solid fa-users-viewfinder"></i></div>
+                <div class="tool-info">
+                    <h4>消费者洞察 <i class="fa-solid fa-angle-right"></i></h4>
+                    <p>目标人群需求痛点</p>
+                </div>
+            </div>
+            <div class="tool-item theme-green">
+                <div class="squircle-icon bg-green"><i class="fa-solid fa-box-open"></i></div>
+                <div class="tool-info">
+                    <h4>选品与开发 <i class="fa-solid fa-angle-right"></i></h4>
+                    <p>数据驱动决策支持</p>
+                </div>
+            </div>
+            <div class="tool-item theme-orange">
+                <div class="squircle-icon bg-orange"><i class="fa-solid fa-store"></i></div>
+                <div class="tool-info">
+                    <h4>竞店分析 <i class="fa-solid fa-angle-right"></i></h4>
+                    <p>360度拆解竞争对手</p>
+                </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- AI 设计部 -->
+        <div id="dept-design" class="department-section" style="display: none;">
+          <div class="dept-header">
+            <h3>AI 设计部导航</h3>
+          </div>
+          <div class="tools-grid-new">
+            <div class="tool-item theme-red">
+                <div class="squircle-icon bg-red"><i class="fa-solid fa-cube"></i></div>
+                <div class="tool-info">
+                    <h4>建模与渲染 <i class="fa-solid fa-angle-right"></i></h4>
+                    <p>一键渲染高级场景图</p>
+                </div>
+            </div>
+            <div class="tool-item theme-cyan">
+                <div class="squircle-icon bg-cyan"><i class="fa-solid fa-image"></i></div>
+                <div class="tool-info">
+                    <h4>推广图制作 <i class="fa-solid fa-angle-right"></i></h4>
+                    <p>高点击率素材生成</p>
+                </div>
+            </div>
+            <div class="tool-item theme-blue">
+                <div class="squircle-icon bg-blue"><i class="fa-solid fa-scroll"></i></div>
+                <div class="tool-info">
+                    <h4>详情页制作 <i class="fa-solid fa-angle-right"></i></h4>
+                    <p>高转化视觉生成</p>
+                </div>
+            </div>
+            <div class="tool-item disabled">
+                <div class="squircle-icon" style="background: #E5E7EB;"><i class="fa-solid fa-box" style="color: #9CA3AF"></i></div>
+                <div class="tool-info">
+                    <h4 style="color: #9CA3AF;">包装设计 <i class="fa-solid fa-angle-right"></i></h4>
+                    <p style="color: #D1D5DB;">敬请期待</p>
+                </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- AI 运营部 -->
+        <div id="dept-operation" class="department-section" style="display: none;">
+          <div class="dept-header">
+            <h3>AI 运营部导航</h3>
+          </div>
+          <div class="tools-grid-new">
+            <div class="tool-item theme-blue">
+                <div class="squircle-icon bg-blue"><i class="fa-solid fa-magnifying-glass-chart"></i></div>
+                <div class="tool-info">
+                    <h4>关键词需求分析 <i class="fa-solid fa-angle-right"></i></h4>
+                    <p>运营最高频分析任务</p>
+                </div>
+            </div>
+            <div class="tool-item theme-purple">
+                <div class="squircle-icon bg-purple"><i class="fa-solid fa-heading"></i></div>
+                <div class="tool-info">
+                    <h4>标题制作 <i class="fa-solid fa-angle-right"></i></h4>
+                    <p>规则明确批量生成</p>
+                </div>
+            </div>
+            <div class="tool-item theme-orange">
+                <div class="squircle-icon bg-orange"><i class="fa-solid fa-comment-dots"></i></div>
+                <div class="tool-info">
+                    <h4>评价买家秀生成 <i class="fa-solid fa-angle-right"></i></h4>
+                    <p>重复性高替代率100%</p>
+                </div>
+            </div>
+            <div class="tool-item theme-red">
+                <div class="squircle-icon bg-red"><i class="fa-solid fa-fire"></i></div>
+                <div class="tool-info">
+                    <h4>爆款计划 <i class="fa-solid fa-angle-right"></i></h4>
+                    <p>涉及多判断维度</p>
+                </div>
+            </div>
+            <div class="tool-item theme-cyan">
+                <div class="squircle-icon bg-cyan"><i class="fa-solid fa-calculator"></i></div>
+                <div class="tool-info">
+                    <h4>利润测算 <i class="fa-solid fa-angle-right"></i></h4>
+                    <p>逻辑清晰数据规范</p>
+                </div>
+            </div>
+            <div class="tool-item theme-green">
+                <div class="squircle-icon bg-green"><i class="fa-solid fa-map-location-dot"></i></div>
+                <div class="tool-info">
+                    <h4>地域/人群优化 <i class="fa-solid fa-angle-right"></i></h4>
+                    <p>广告投放地域建议</p>
+                </div>
+            </div>
+            <div class="tool-item theme-blue">
+                <div class="squircle-icon bg-blue"><i class="fa-solid fa-list-check"></i></div>
+                <div class="tool-info">
+                    <h4>项目管理看板 <i class="fa-solid fa-angle-right"></i></h4>
+                    <p>流程追踪独立排期</p>
+                </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- AI 内容部 -->
+        <div id="dept-content" class="department-section" style="display: none;">
+          <div class="dept-header">
+            <h3>AI 内容部导航</h3>
+          </div>
+          <div class="tools-grid-new">
+            <div class="tool-item theme-orange">
+                <div class="squircle-icon bg-orange"><i class="fa-solid fa-clapperboard"></i></div>
+                <div class="tool-info">
+                    <h4>主图视频 <i class="fa-solid fa-angle-right"></i></h4>
+                    <p>商品主图动态展示</p>
+                </div>
+            </div>
+            <div class="tool-item theme-blue">
+                <div class="squircle-icon bg-blue"><i class="fa-solid fa-photo-film"></i></div>
+                <div class="tool-info">
+                    <h4>投放素材 <i class="fa-solid fa-angle-right"></i></h4>
+                    <p>广告投放素材生成</p>
+                </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- AI 人事部 -->
+        <div id="dept-hr" class="department-section" style="display: none;">
+          <div class="dept-header">
+            <h3>AI 人事部导航</h3>
+          </div>
+          <div class="tools-grid-new">
+            <div class="tool-item theme-purple">
+                <div class="squircle-icon bg-purple"><i class="fa-solid fa-clipboard-user"></i></div>
+                <div class="tool-info">
+                    <h4>考勤核对 <i class="fa-solid fa-angle-right"></i></h4>
+                    <p>自动分析月度异常</p>
+                </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </main>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const deptLinks = document.querySelectorAll('.dept-link');
+      const deptSections = document.querySelectorAll('.department-section');
+
+      function activateDept(targetId) {
+        // Reset all active states
+        document.querySelectorAll('#sidebar-nav li').forEach(li => li.classList.remove('active'));
+        
+        // Set clicked to active
+        const link = document.querySelector(`.dept-link[data-target="${targetId}"]`);
+        if(link) link.classList.add('active');
+        
+        // Hide all sections
+        deptSections.forEach(section => {
+          section.style.display = 'none';
+        });
+        
+        // Show the target section
+        if (document.getElementById(targetId)) {
+          document.getElementById(targetId).style.display = 'block';
+        }
+      }
+
+      // Check URL hash on load
+      let initialTarget = 'dept-market';
+      if(window.location.hash) {
+          const hashTarget = window.location.hash.substring(1);
+          if (document.getElementById(hashTarget)) {
+              initialTarget = hashTarget;
+          }
+      }
+      activateDept(initialTarget);
+
+      deptLinks.forEach(link => {
+        link.addEventListener('click', (e) => {
+          e.preventDefault();
+          const targetId = link.getAttribute('data-target');
+          window.history.pushState(null, null, '#' + targetId);
+          activateDept(targetId);
+        });
+      });
+    });
+  </script>
+</body>
+</html>

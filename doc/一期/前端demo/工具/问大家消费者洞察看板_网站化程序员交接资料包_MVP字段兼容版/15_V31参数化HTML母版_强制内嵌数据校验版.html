@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>V31 问大家消费者洞察看板｜参数化母版</title>
+<style>
+:root{--bg:#08111f;--panel:rgba(12,20,36,.82);--ink:#eef4ff;--sub:#c8d7ef;--muted:#89a0c5;--line:rgba(85,130,255,.22);--blue:#69a5ff;--purple:#8b7cff;--cyan:#48d7ff;--green:#38d39f;--orange:#ffbd59;--red:#ff7688;--shadow:0 24px 80px rgba(0,0,0,.42)}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:radial-gradient(circle at 8% 0%,rgba(67,119,255,.22),transparent 24%),radial-gradient(circle at 92% 0%,rgba(124,108,255,.18),transparent 22%),linear-gradient(180deg,#07101d 0%,#091426 38%,#08111f 100%);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","Segoe UI","PingFang SC","Microsoft YaHei",Arial,sans-serif}
+body:before{content:"";position:fixed;inset:0;pointer-events:none;background-image:linear-gradient(rgba(93,134,255,.08) 1px,transparent 1px),linear-gradient(90deg,rgba(93,134,255,.08) 1px,transparent 1px);background-size:28px 28px;opacity:.55}.wrap{max-width:1440px;margin:0 auto;padding:26px 24px 72px}
+.hero,.card,.kpi,.mini-card,.detail-card,.ad-card{background:linear-gradient(180deg,rgba(15,25,45,.90),rgba(10,18,34,.80));border:1px solid rgba(85,130,255,.16);box-shadow:var(--shadow),inset 0 1px 0 rgba(255,255,255,.03);backdrop-filter:blur(14px);border-radius:28px}.hero{padding:30px;position:relative;overflow:hidden}.hero:after{content:"";position:absolute;top:0;left:28px;right:28px;height:1px;background:linear-gradient(90deg,rgba(72,215,255,0),rgba(72,215,255,.55),rgba(139,124,255,.55),rgba(72,215,255,0))}
+.kicker{display:inline-flex;gap:8px;align-items:center;padding:8px 12px;border-radius:999px;background:rgba(17,32,61,.92);border:1px solid rgba(105,165,255,.28);color:#9dc4ff;font-size:12px;font-weight:850;letter-spacing:.08em}.kicker:before{content:"";width:8px;height:8px;border-radius:50%;background:linear-gradient(135deg,var(--cyan),var(--blue));box-shadow:0 0 0 6px rgba(72,215,255,.08)}
+h1{font-size:44px;line-height:1.06;margin:16px 0 0;letter-spacing:-.045em}.subtitle{color:var(--muted);font-size:16px;line-height:1.72;max-width:900px}.hero-grid{display:grid;grid-template-columns:1.35fr .85fr;gap:22px}.verdict{padding:22px;border-radius:24px;background:rgba(15,25,45,.86);border:1px solid var(--line)}.verdict b{color:#a9bddf;font-size:12px}.verdict p{font-size:18px;line-height:1.65;font-weight:850}
+.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:22px}.kpi{padding:18px;border-radius:22px}.kpi .name{color:#a9bddf;font-size:12px}.kpi .num{color:#b7d3ff;margin-top:9px;font-size:26px;font-weight:950}.kpi .desc{color:var(--muted);font-size:12px;line-height:1.55}
+.nav{position:sticky;top:12px;z-index:80;margin-top:18px;padding:12px;border-radius:24px;background:linear-gradient(180deg,rgba(11,20,37,.84),rgba(8,17,31,.78));border:1px solid rgba(105,156,255,.24);box-shadow:0 20px 50px rgba(0,0,0,.38);backdrop-filter:blur(22px)}.nav-inner{display:flex;gap:10px;overflow:auto}.nav a{flex:0 0 auto;text-decoration:none;color:#b7c9e6;padding:11px 16px;border-radius:16px;font-weight:900;font-size:13px;background:rgba(255,255,255,.03)}.nav a.active{color:#fff;background:linear-gradient(135deg,#235dff,#4e71ff 52%,#7d63ff);box-shadow:0 14px 30px rgba(35,93,255,.28)}
+.section{margin-top:32px;scroll-margin-top:100px}.section-head{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:16px;gap:18px}.section-head h2{margin:0;font-size:30px;letter-spacing:-.04em;display:flex;align-items:center;gap:10px}.section-head h2:before{content:"";width:10px;height:10px;border-radius:3px;background:linear-gradient(135deg,var(--cyan),var(--blue));box-shadow:0 0 0 6px rgba(72,215,255,.10)}.section-head p,.small{color:var(--muted);font-size:13px;line-height:1.7}.card{overflow:hidden}.card-hd,.summary-title{display:flex;justify-content:space-between;gap:12px;padding:20px 22px 15px;border-bottom:1px solid rgba(85,130,255,.14);background:rgba(18,31,56,.72)}.card-hd h3,.summary-title h3{margin:0;font-size:18px}.card-bd{padding:20px 22px 22px}.grid2{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.badge{display:inline-flex;padding:6px 9px;border-radius:999px;font-size:12px;font-weight:900;border:1px solid rgba(255,255,255,.05)}.blue{background:rgba(41,95,204,.34);color:#b3d2ff}.purple{background:rgba(120,92,255,.28);color:#d5cfff}.green{background:rgba(30,174,117,.28);color:#bff3df}.orange{background:rgba(255,161,51,.28);color:#ffe0ad}.red{background:rgba(240,80,108,.28);color:#ffc3ce}
+.decision-list{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}.decision-item,.persona-card,.expr-card,.ad-card,.detail-card{padding:18px;border-radius:24px;background:linear-gradient(180deg,rgba(17,31,56,.92),rgba(11,20,36,.84));border:1px solid rgba(85,130,255,.16)}.decision-item h4,.persona-card h4,.ad-card h4,.detail-card h4{margin:0;font-size:17px;line-height:1.38}.decision-item p,.persona-card p,.expr-card p,.ad-card p,.detail-card p{color:var(--muted);font-size:13px;line-height:1.72}.meta{display:flex;flex-wrap:wrap;gap:7px;margin-top:10px}
+.persona-card{cursor:pointer}.persona-card.active{border-color:rgba(72,215,255,.38);box-shadow:0 0 0 4px rgba(72,215,255,.08)}.matrix-wrap,.table-wrap,.drill-table-wrap{overflow:auto;max-height:560px;border:1px solid rgba(105,156,255,.18);border-radius:20px;background:rgba(7,14,27,.72)}table{width:100%;border-collapse:separate;border-spacing:0;font-size:13px}th,td{padding:12px 10px;border-bottom:1px solid rgba(105,156,255,.12);vertical-align:top;text-align:left}th{position:sticky;top:0;background:rgba(16,28,50,.96);color:#a9bddf;z-index:2}td{color:#dbe6f8}tr:nth-child(even) td{background:rgba(14,25,46,.38)}tr:hover td{background:rgba(32,57,99,.50)}
+.heat{cursor:pointer;min-width:70px;border-radius:14px;padding:9px;text-align:center;font-weight:950;border:1px solid rgba(85,130,255,.16)}.heat small{display:block;color:#a9bddf;margin-top:4px}.h0{background:rgba(16,26,45,.92);color:#93a5c4}.h1{background:rgba(25,54,114,.72)}.h2{background:rgba(41,88,184,.78)}.h3{background:rgba(72,127,255,.84);color:#fff}
+.ad-tabs{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:16px}.ad-tab{border:1px solid rgba(85,130,255,.16);background:rgba(16,28,50,.96);color:#c5d5ee;border-radius:999px;padding:10px 14px;font-weight:900;cursor:pointer}.ad-tab.active{background:linear-gradient(135deg,#235dff,#4e71ff 52%,#7d63ff);color:#fff}.ad-layout{display:grid;grid-template-columns:330px 1fr;gap:16px}.ad-tests{display:grid;gap:12px}.ad-cols{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.ad-cell,.evidence-cell{padding:12px;border-radius:16px;background:rgba(17,31,56,.82);border:1px solid rgba(85,130,255,.16)}.ad-cell b,.evidence-cell b{color:#a9bddf;font-size:12px}.ad-evidence{display:grid;grid-template-columns:220px 1fr;gap:10px;margin:0 0 12px}.detail-card{display:grid;grid-template-columns:220px 1fr 280px;gap:12px}.detail-mid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}.quotes{max-height:190px;overflow:auto}
+.filters{display:grid;grid-template-columns:1.4fr repeat(4,minmax(120px,.7fr)) auto;gap:10px;margin-bottom:14px}input,select,button{min-height:42px;border-radius:14px;border:1px solid rgba(105,156,255,.18);background:rgba(10,18,34,.88);color:var(--ink);padding:0 13px}button{background:linear-gradient(135deg,#235dff,#4e71ff 52%,#7d63ff);border:none;font-weight:900;cursor:pointer}.pagination{display:flex;justify-content:space-between;align-items:center;color:var(--muted);padding-top:14px}.pagination>div{display:flex;gap:8px}
+@media(max-width:1180px){.hero-grid,.ad-layout{grid-template-columns:1fr}.grid3,.grid2,.decision-list{grid-template-columns:1fr 1fr}.ad-cols,.detail-mid{grid-template-columns:1fr}.detail-card{grid-template-columns:1fr}.ad-evidence{grid-template-columns:1fr}}@media(max-width:760px){.wrap{padding:18px 14px 44px}h1{font-size:34px}.kpis,.grid3,.grid2,.decision-list,.filters{grid-template-columns:1fr}.nav{top:8px}.section-head h2:before{display:none}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <section class="hero" id="overview">
+    <div class="hero-grid">
+      <div><div class="kicker">CONSUMER INSIGHT DASHBOARD V31</div><h1 id="pageTitle">问大家消费者洞察看板</h1><p class="subtitle" id="pageSubtitle"></p></div>
+      <div class="verdict"><b>本期核心洞察</b><p id="oneSentence"></p></div>
+    </div>
+    <div class="kpis" id="kpis"></div>
+  </section>
+  <nav class="nav"><div class="nav-inner">
+    <a href="#overview">总览</a><a href="#decision">核心决策点</a><a href="#persona">人群分类</a><a href="#expression">表达指导</a><a href="#adTestMatrix">测图矩阵</a><a href="#detail">详情页方向</a><a href="#appendix">附录追溯</a>
+  </div></nav>
+  <section class="section" id="decision"><div class="section-head"><div><h2>二、消费者核心决策点</h2><p>识别消费者购买前真正用于判断是否继续看的关键问题。</p></div></div><div class="card"><div class="card-hd"><h3>决策点排序</h3><span class="small">双列展示</span></div><div class="card-bd"><div class="decision-list" id="decisionList"></div></div></div></section>
+  <section class="section" id="persona"><div class="section-head"><div><h2>三、人群分类 关注点差异分析</h2><p>识别人群、场景、角色信号，并支持点击下钻到真实问大家明细。</p></div></div><div class="grid3" id="personaCards"></div><div class="card section"><div class="card-hd"><h3>人群 × 关注维度差异矩阵</h3><span class="small">点击数字格下钻</span></div><div class="card-bd"><div class="matrix-wrap"><table id="personaMatrix"></table></div></div></div><div class="card section" id="personaDrillPanel"><div class="card-bd"><h3 id="drillTitle">点击人群卡片或矩阵格，查看对应明细</h3><p class="small" id="drillDesc">用于核对该人群到底在问什么。</p><div id="drillSummary"></div><div id="personaDrillContent" class="table-wrap"><div style="padding:22px;color:var(--muted)">还没有选择下钻对象。</div></div></div></div></section>
+  <section class="section" id="expression"><div class="section-head"><div><h2>四、主图 / 推广图消费者决策点表达</h2><p>只输出表达方向，不生成具体推广文案。</p></div></div><div class="grid2" id="expressionCards"></div></section>
+  <section class="section" id="adTestMatrix"><div class="section-head"><div><h2>五、推广图测图矩阵</h2><p>先测通用人群核心价值，再测三个细分人群/场景方向；每类保留2-3个表达方向。</p></div></div><div class="card"><div class="card-hd"><h3>四类推广图测试方向</h3><span class="small">不输出具体文案</span></div><div class="card-bd"><div class="ad-tabs" id="adTabs"></div><div class="ad-layout"><div id="adInfo"></div><div id="adCards"></div></div></div></div></section>
+  <section class="section" id="detail"><div class="section-head"><div><h2>六、详情页优化方向</h2><p>基于问大家问题反推内容机会：为什么、数据依据、承接方式、代表问题。</p></div></div><div class="card"><div class="card-hd"><h3>详情页证据链</h3><span class="small">紧凑展示</span></div><div class="card-bd"><div id="detailEvidenceList"></div></div></div></section>
+  <section class="section" id="appendix"><div class="section-head"><div><h2>七、附录：分析罗列与明细追溯</h2><p>完整保留原始明细，支持搜索筛选。</p></div></div>
+    <details class="card" open><summary class="summary-title"><h3>核心关切 TOP20</h3><span>不足20条用维度补齐</span></summary><div class="table-wrap"><table id="coreTable"></table></div></details>
+    <details class="card section"><summary class="summary-title"><h3>关注维度解读表</h3><span>维度 / 数量 / 解读</span></summary><div class="table-wrap"><table id="dimensionTable"></table></div></details>
+    <details class="card section"><summary class="summary-title"><h3>完整明细追溯</h3><span>搜索与筛选</span></summary><div class="card-bd"><div class="filters"><input id="searchInput" placeholder="搜索问题 / 回答 / 关注点"/><select id="dimFilter"><option value="">全部维度</option></select><select id="personaFilter"><option value="">全部人群</option></select><select id="barrierFilter"><option value="">全部阻力</option></select><select id="clusterFilter"><option value="">全部问题簇</option></select><button onclick="resetFilters()">重置</button></div><div class="table-wrap"><table id="detailTable"></table></div><div class="pagination"><span id="pageInfo"></span><div><button onclick="prevPage()">上一页</button><button onclick="nextPage()">下一页</button></div></div></div></details>
+  </section>
+</div>
+<script id="dashboard-data" type="application/json">
+{
+  "meta": {
+    "productName": "样例产品",
+    "category": "跨品类示例",
+    "subCategory": "示例子类目",
+    "sourceFile": "sample.xlsx",
+    "generatedAt": "2026-06-02 13:12:25",
+    "version": "V31"
+  },
+  "summary": {
+    "total": 1200,
+    "category": "跨品类示例",
+    "oneSentence": "消费者核心不是只问价格，而是在验证价值、适配、风险和使用门槛。",
+    "coreConcern": "核心价值是否成立",
+    "mainPersona": "高顾虑细分人群",
+    "mainAdTestDirection": "通用人群｜核心价值/功效表达",
+    "dataBoundary": "问大家用于发现消费者疑问与表达方向，不代表真实购买人群占比。"
+  },
+  "details": [
+    {
+      "id": 1,
+      "time": "2026-01-01",
+      "question": "这个真的有用吗？适合新手吗？",
+      "answer": "可以，根据说明使用即可。",
+      "concernPoints": [
+        "效果真实性",
+        "新手适用"
+      ],
+      "dimensions": [
+        "效果/价值验证",
+        "使用门槛"
+      ],
+      "clusters": [
+        "价值疑问",
+        "使用疑问"
+      ],
+      "personas": [
+        "新手用户"
+      ],
+      "barrier": "价值验证",
+      "decisionStage": "结果验证"
+    },
+    {
+      "id": 2,
+      "time": "2026-01-02",
+      "question": "敏感人群能用吗，会不会有风险？",
+      "answer": "建议先确认适用边界。",
+      "concernPoints": [
+        "风险安全",
+        "适用边界"
+      ],
+      "dimensions": [
+        "风险消除",
+        "人群/场景适配"
+      ],
+      "clusters": [
+        "安全疑问"
+      ],
+      "personas": [
+        "高顾虑人群"
+      ],
+      "barrier": "风险顾虑",
+      "decisionStage": "风险消除"
+    }
+  ],
+  "decisionPoints": [
+    {
+      "id": "dp01",
+      "priority": "P0",
+      "name": "核心价值是否成立",
+      "count": 320,
+      "ratio": 0.267,
+      "consumerQuestion": "到底有没有用，值不值得点进去看？",
+      "examples": [
+        "这个真的有用吗？"
+      ],
+      "visualDirection": "推广图优先表达核心价值与结果证据。",
+      "detailDirection": "详情页首屏承接价值证明与适用边界。",
+      "relatedDetailIds": [
+        1
+      ]
+    },
+    {
+      "id": "dp02",
+      "priority": "P1",
+      "name": "风险与适用边界",
+      "count": 180,
+      "ratio": 0.15,
+      "consumerQuestion": "我这种情况能不能用，会不会踩坑？",
+      "examples": [
+        "敏感人群能用吗，会不会有风险？"
+      ],
+      "visualDirection": "细分人群推广图表达安全边界和适配条件。",
+      "detailDirection": "详情页补充风险说明、使用条件和FAQ。",
+      "relatedDetailIds": [
+        2
+      ]
+    }
+  ],
+  "personas": [
+    {
+      "id": "p01",
+      "name": "高顾虑人群",
+      "type": "风险敏感",
+      "count": 80,
+      "detailMatchCount": 120,
+      "confidence": "高置信",
+      "ratioText": "6.7%",
+      "topDimensions": [
+        {
+          "dimension": "风险消除",
+          "count": 50,
+          "ratio": 0.42
+        }
+      ],
+      "examples": [
+        "敏感人群能用吗，会不会有风险？"
+      ],
+      "insight": "想买但需要先确认风险边界。",
+      "action": "适合做风险消除表达。"
+    },
+    {
+      "id": "p02",
+      "name": "新手用户",
+      "type": "经验水平",
+      "count": 40,
+      "detailMatchCount": 65,
+      "confidence": "中置信",
+      "ratioText": "3.3%",
+      "topDimensions": [
+        {
+          "dimension": "使用门槛",
+          "count": 35,
+          "ratio": 0.54
+        }
+      ],
+      "examples": [
+        "适合新手吗？"
+      ],
+      "insight": "担心不会用、用错或麻烦。",
+      "action": "适合做易用性表达。"
+    }
+  ],
+  "personaDimensionMatrix": [
+    {
+      "persona": "高顾虑人群",
+      "dimension": "风险消除",
+      "count": 50,
+      "ratio": 0.42,
+      "detailIds": [
+        2
+      ]
+    },
+    {
+      "persona": "新手用户",
+      "dimension": "使用门槛",
+      "count": 35,
+      "ratio": 0.54,
+      "detailIds": [
+        1
+      ]
+    }
+  ],
+  "expressionCards": [
+    {
+      "id": "exp01",
+      "target": "通用人群",
+      "decisionPoint": "核心价值",
+      "logic": "先解决是否值得点击。",
+      "format": "结果证据 / 场景图 / 对比图",
+      "riskNote": "避免绝对化承诺。"
+    },
+    {
+      "id": "exp02",
+      "target": "高顾虑人群",
+      "decisionPoint": "风险消除",
+      "logic": "降低踩坑风险。",
+      "format": "边界说明 / 使用条件 / 安全提醒",
+      "riskNote": "不制造恐惧。"
+    }
+  ],
+  "adTestMatrix": [
+    {
+      "id": "ad01",
+      "title": "通用人群｜核心价值/功效表达",
+      "type": "universal",
+      "sampleBase": "核心价值验证320条",
+      "focus": [
+        "价值验证",
+        "结果证据",
+        "预期管理"
+      ],
+      "insight": "先测最大公约数，看基础盘是否愿意点击。",
+      "tests": [
+        {
+          "id": "A1",
+          "title": "核心价值结果方向",
+          "sampleData": "价值验证320条",
+          "whyTest": "最高频购买前判断。",
+          "pain": "怕没用、不值。",
+          "direction": "表达核心结果和价值证明。",
+          "visual": "结果场景 + 可信背书。",
+          "metric": "CTR、停留、加购"
+        },
+        {
+          "id": "A2",
+          "title": "适用问题覆盖方向",
+          "sampleData": "适配疑问180条",
+          "whyTest": "用户需要确认自己的问题被覆盖。",
+          "pain": "怕不适合自己。",
+          "direction": "表达适用范围与问题覆盖。",
+          "visual": "问题场景分区图。",
+          "metric": "CTR、咨询率"
+        }
+      ]
+    },
+    {
+      "id": "ad02",
+      "title": "细分人群A｜高顾虑/高价值表达",
+      "type": "persona",
+      "sampleBase": "风险顾虑180条",
+      "focus": [
+        "风险消除",
+        "适用边界"
+      ],
+      "insight": "高顾虑人群需要先降低风险。",
+      "tests": [
+        {
+          "id": "B1",
+          "title": "安全边界方向",
+          "sampleData": "风险顾虑180条",
+          "whyTest": "风险是阻碍加购的关键。",
+          "pain": "怕踩坑。",
+          "direction": "表达适用边界与风险控制。",
+          "visual": "边界说明 + 步骤图。",
+          "metric": "加购、转化、咨询率"
+        },
+        {
+          "id": "B2",
+          "title": "安心使用方向",
+          "sampleData": "使用疑问120条",
+          "whyTest": "明确使用方式可减少犹豫。",
+          "pain": "怕不会用。",
+          "direction": "表达简单、清晰、可控。",
+          "visual": "步骤卡片。",
+          "metric": "停留、加购"
+        }
+      ]
+    },
+    {
+      "id": "ad03",
+      "title": "细分人群B｜高场景/高意向表达",
+      "type": "scenario",
+      "sampleBase": "场景问题100条",
+      "focus": [
+        "使用场景",
+        "购买角色"
+      ],
+      "insight": "场景化表达能提高自我匹配。",
+      "tests": [
+        {
+          "id": "C1",
+          "title": "具体场景方向",
+          "sampleData": "场景问题100条",
+          "whyTest": "场景越具体越容易识别。",
+          "pain": "怕不适合自己的场景。",
+          "direction": "表达具体使用场景。",
+          "visual": "场景化图片。",
+          "metric": "CTR、停留"
+        },
+        {
+          "id": "C2",
+          "title": "角色代入方向",
+          "sampleData": "角色信号80条",
+          "whyTest": "购买角色影响表达。",
+          "pain": "给谁买、谁使用。",
+          "direction": "表达使用对象。",
+          "visual": "使用者/对象场景。",
+          "metric": "CTR、加购"
+        }
+      ]
+    },
+    {
+      "id": "ad04",
+      "title": "细分人群C｜复合问题/差异化表达",
+      "type": "differentiation",
+      "sampleBase": "复合问题90条",
+      "focus": [
+        "复合问题",
+        "差异化需求"
+      ],
+      "insight": "复合问题适合做差异化素材。",
+      "tests": [
+        {
+          "id": "D1",
+          "title": "复合痛点方向",
+          "sampleData": "复合问题90条",
+          "whyTest": "用户常同时有多个顾虑。",
+          "pain": "单点表达不能覆盖完整问题。",
+          "direction": "表达多个问题的组合解决路径。",
+          "visual": "多问题标签 + 场景图。",
+          "metric": "CTR、停留、加购"
+        },
+        {
+          "id": "D2",
+          "title": "差异化卖点方向",
+          "sampleData": "差异化需求70条",
+          "whyTest": "可测试区别于通用表达的增量。",
+          "pain": "同类产品难区分。",
+          "direction": "表达差异化价值。",
+          "visual": "对比式视觉。",
+          "metric": "CTR、转化"
+        }
+      ]
+    }
+  ],
+  "detailEvidence": [
+    {
+      "id": "de01",
+      "module": "核心价值信任模块",
+      "count": 320,
+      "ratio": "26.7%",
+      "why": "用户首先验证是否值得购买。",
+      "evidence": "价值验证问题为最高频。",
+      "carry": "详情页前屏放价值证据、场景和边界。",
+      "examples": [
+        "这个真的有用吗？"
+      ]
+    },
+    {
+      "id": "de02",
+      "module": "风险边界模块",
+      "count": 180,
+      "ratio": "15.0%",
+      "why": "高顾虑会阻碍加购。",
+      "evidence": "风险相关问题集中。",
+      "carry": "详情页补充适用条件、风险说明和FAQ。",
+      "examples": [
+        "会不会有风险？"
+      ]
+    }
+  ],
+  "coreTop20": [
+    {
+      "rank": 1,
+      "name": "核心价值验证",
+      "count": 320,
+      "ratio": 0.267,
+      "source": "核心关切",
+      "action": "优先进入通用功效表达。"
+    }
+  ],
+  "dimensions": [
+    {
+      "dimension": "效果/价值验证",
+      "count": 320,
+      "ratio": 0.267,
+      "ratioText": "26.7%",
+      "points": [
+        "有没有用",
+        "值不值"
+      ],
+      "explain": "用户先验证产品价值。"
+    },
+    {
+      "dimension": "风险消除",
+      "count": 180,
+      "ratio": 0.15,
+      "ratioText": "15.0%",
+      "points": [
+        "风险",
+        "适用边界"
+      ],
+      "explain": "用户需要降低踩坑风险。"
+    }
+  ],
+  "faqs": []
+}
+</script>
+<script>
+const DATA=JSON.parse(document.getElementById('dashboard-data').textContent);
+const esc=s=>String(s??'').replace(/[&<>'"]/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[m]));
+const pct=n=>((n||0)*100).toFixed(1)+'%'; const badge=(s,c='blue')=>`<span class="badge ${c}">${esc(s)}</span>`;
+function getDetails(ids){if(!ids||!ids.length)return DATA.details||[];const set=new Set(ids.map(String));return (DATA.details||[]).filter(x=>set.has(String(x.id)))}
+function renderOverview(){const m=DATA.meta||{},s=DATA.summary||{};pageTitle.textContent=`${m.productName||'问大家'}消费者洞察看板`;pageSubtitle.textContent=`品类：${m.category||s.category||'未识别'}｜V31 参数化母版｜数据完整内嵌`;oneSentence.textContent=s.oneSentence||'';const k=[['样本量',(s.total||0)+'条','有效问大家问题数'],['第一决策点',s.coreConcern||'—','最高优先级消费者判断'],['主要人群/场景',s.mainPersona||'—','仅代表问大家信号'],['核心用途',s.mainAdTestDirection||'推广图测图','表达方向而非最终文案']];kpis.innerHTML=k.map(x=>`<div class="kpi"><div class="name">${esc(x[0])}</div><div class="num">${esc(x[1])}</div><div class="desc">${esc(x[2])}</div></div>`).join('')}
+function renderDecision(){decisionList.innerHTML=(DATA.decisionPoints||[]).map(d=>`<div class="decision-item"><div class="meta">${badge(d.priority||'P?','orange')}${badge((d.count||0)+'条','blue')}</div><h4>${esc(d.name)}</h4><p><b>消费者在判断：</b>${esc(d.consumerQuestion)}<br><b>代表问法：</b>${(d.examples||[]).slice(0,2).map(x=>'“'+esc(x)+'”').join('、')}<br><b>主图/推广图表达：</b>${esc(d.visualDirection)}<br><b>详情页承接：</b>${esc(d.detailDirection)}</p></div>`).join('')}
+function renderPersona(){personaCards.innerHTML=(DATA.personas||[]).slice(0,6).map(p=>`<div class="persona-card" data-persona="${esc(p.name)}" onclick="drillPersona('${esc(p.name)}')"><h4>${esc(p.name)}</h4><div class="meta">${badge((p.count||0)+'条','blue')}${badge(p.confidence||'样本信号','green')}</div><p><b>主要关注：</b>${(p.topDimensions||[]).slice(0,3).map(x=>badge(x.dimension+' '+x.count,'purple')).join('')}<br><b>代表问法：</b>${(p.examples||[]).slice(0,2).map(x=>'“'+esc(x)+'”').join('、')}<br><b>洞察：</b>${esc(p.insight||'')}</p></div>`).join('');
+ const ps=(DATA.personas||[]).slice(0,6).map(x=>x.name), ds=[...new Set((DATA.personaDimensionMatrix||[]).map(x=>x.dimension))].slice(0,8);
+ personaMatrix.innerHTML='<thead><tr><th>人群</th>'+ds.map(d=>`<th>${esc(d)}</th>`).join('')+'</tr></thead><tbody>'+ps.map(p=>`<tr><td><b>${esc(p)}</b></td>`+ds.map(d=>{const r=(DATA.personaDimensionMatrix||[]).find(x=>x.persona===p&&x.dimension===d)||{count:0,ratio:0,detailIds:[]};const cls=r.count===0?'h0':r.ratio>=.25?'h3':r.ratio>=.12?'h2':'h1';return `<td><div class="heat ${cls}" onclick="drillPersonaDimension('${esc(p)}','${esc(d)}')">${r.count}<small>${pct(r.ratio)}</small></div></td>`}).join('')+'</tr>`).join('')+'</tbody>'}
+function renderDrill(rows,title,desc){drillTitle.textContent=title;drillDesc.textContent=desc;drillSummary.innerHTML=`<div class="meta">${badge(rows.length+'条明细','green')}</div>`;personaDrillContent.innerHTML=tableDetail(rows.slice(0,80));personaDrillPanel.scrollIntoView({behavior:'smooth',block:'start'})}
+function drillPersona(p){document.querySelectorAll('.persona-card').forEach(el=>el.classList.toggle('active',el.dataset.persona===p));const rows=(DATA.details||[]).filter(x=>(x.personas||[]).includes(p));renderDrill(rows,`${p} 下钻明细`,'查看该人群/场景的原始问题。')}
+function drillPersonaDimension(p,d){const rows=(DATA.details||[]).filter(x=>(x.personas||[]).includes(p)&&(x.dimensions||[]).includes(d));renderDrill(rows,`${p} × ${d} 下钻明细`,'查看该人群在该关注维度下的原始问题。')}
+function renderExpression(){expressionCards.innerHTML=(DATA.expressionCards||[]).map(x=>`<div class="expr-card"><div class="meta">${badge(x.target||'对象','blue')}${badge(x.decisionPoint||'决策点','purple')}</div><p><b>表达逻辑：</b>${esc(x.logic)}<br><b>建议形式：</b>${esc(x.format)}<br><b>风险提示：</b>${esc(x.riskNote||'不输出具体文案')}</p></div>`).join('')}
+let currentAd=0;function renderAd(){const arr=DATA.adTestMatrix||[];adTabs.innerHTML=arr.map((a,i)=>`<button class="ad-tab ${i===currentAd?'active':''}" onclick="currentAd=${i};renderAd()">${esc(a.title)}</button>`).join('');const item=arr[currentAd]||{};adInfo.innerHTML=`<div class="ad-card"><h4>${esc(item.title)}</h4><p><b>样本基础：</b>${esc(item.sampleBase)}<br><b>洞察：</b>${esc(item.insight||'')}</p><div class="meta">${(item.focus||[]).map(x=>badge(x,'purple')).join('')}</div></div>`;adCards.innerHTML=`<div class="ad-tests">`+(item.tests||[]).map(t=>`<div class="ad-card"><div class="meta">${badge(t.id||'','blue')}${badge(t.sampleData||'样本数据','green')}</div><h4>${esc(t.title)}</h4><div class="ad-evidence"><div class="ad-cell"><b>样本数据</b><p>${esc(t.sampleData)}</p></div><div class="ad-cell"><b>为什么要这样测试</b><p>${esc(t.whyTest)}</p></div></div><div class="ad-cols"><div class="ad-cell"><b>核心痛点 / 关注点</b><p>${esc(t.pain)}</p></div><div class="ad-cell"><b>表达方向</b><p>${esc(t.direction)}</p></div><div class="ad-cell"><b>画面方向</b><p>${esc(t.visual)}</p></div></div><p><b>建议观察指标：</b>${esc(t.metric)}</p></div>`).join('')+`</div>`}
+function renderDetailEvidence(){detailEvidenceList.innerHTML=(DATA.detailEvidence||[]).map(d=>`<div class="detail-card"><div><h4>${esc(d.module)}</h4><div class="meta">${badge((d.count||0)+'条','blue')}${badge(d.ratio||'','purple')}</div></div><div class="detail-mid"><div class="evidence-cell"><b>为什么要优化</b><p>${esc(d.why)}</p></div><div class="evidence-cell"><b>数据依据</b><p>${esc(d.evidence)}</p></div><div class="evidence-cell"><b>详情页承接方式</b><p>${esc(d.carry)}</p></div></div><div class="evidence-cell quotes"><b>代表性原始问题</b><p>${(d.examples||[]).map(x=>'“'+esc(x)+'”').join('<br>')}</p></div></div>`).join('')}
+function buildCore(){const core=(DATA.coreTop20&&DATA.coreTop20.length?DATA.coreTop20:[]).map((x,i)=>({...x,rank:x.rank||i+1,source:x.source||'核心关切'}));if(core.length>=20)return core.slice(0,20);const used=new Set(core.map(x=>x.name));const sup=(DATA.dimensions||[]).filter(d=>!used.has(d.dimension)).map((d,i)=>({rank:core.length+i+1,name:d.dimension,count:d.count,ratio:d.ratio,source:'关注维度补充',action:d.explain||''}));return core.concat(sup).slice(0,20)}
+function renderAppendix(){const core=buildCore();coreTable.innerHTML='<thead><tr><th>排名</th><th>核心关切</th><th>条数</th><th>占比</th><th>数据来源</th><th>动作建议/解读</th></tr></thead><tbody>'+core.map(r=>`<tr><td>TOP ${r.rank}</td><td><b>${esc(r.name)}</b></td><td>${r.count||0}</td><td>${pct(r.ratio)}</td><td>${badge(r.source||'核心关切',r.source==='关注维度补充'?'purple':'blue')}</td><td>${esc(r.action||r.explain||'')}</td></tr>`).join('')+'</tbody>';dimensionTable.innerHTML='<thead><tr><th>关注维度</th><th>数量</th><th>占比</th><th>核心关注点</th><th>维度解读</th></tr></thead><tbody>'+(DATA.dimensions||[]).map(d=>`<tr><td><b>${esc(d.dimension)}</b></td><td>${d.count||0}</td><td>${esc(d.ratioText||pct(d.ratio))}</td><td>${(d.points||[]).map(x=>badge(x,'purple')).join('')}</td><td>${esc(d.explain||'')}</td></tr>`).join('')+'</tbody>'}
+let page=1,pageSize=18,filtered=[];function initFilters(){const det=DATA.details||[];const fill=(id,arr)=>{const el=document.getElementById(id);[...new Set(arr.filter(Boolean))].sort().forEach(v=>el.insertAdjacentHTML('beforeend',`<option value="${esc(v)}">${esc(v)}</option>`))};fill('dimFilter',det.flatMap(x=>x.dimensions||[]));fill('personaFilter',det.flatMap(x=>x.personas||[]));fill('barrierFilter',det.map(x=>x.barrier));fill('clusterFilter',det.flatMap(x=>x.clusters||[]));['searchInput','dimFilter','personaFilter','barrierFilter','clusterFilter'].forEach(id=>document.getElementById(id).addEventListener('input',()=>{page=1;applyFilters()}))}
+function applyFilters(){const kw=searchInput.value.trim().toLowerCase(),d=dimFilter.value,p=personaFilter.value,b=barrierFilter.value,c=clusterFilter.value;filtered=(DATA.details||[]).filter(x=>{const text=(x.question+' '+(x.answer||'')+' '+(x.concernPoints||[]).join(' ')+' '+(x.dimensions||[]).join(' ')).toLowerCase();return(!kw||text.includes(kw))&&(!d||(x.dimensions||[]).includes(d))&&(!p||(x.personas||[]).includes(p))&&(!b||x.barrier===b)&&(!c||(x.clusters||[]).includes(c))});renderDetail()}
+function tableDetail(rows){return '<table><thead><tr><th>ID</th><th>时间</th><th>问题</th><th>回答</th><th>关注点</th><th>维度</th><th>人群</th><th>阻力</th></tr></thead><tbody>'+rows.map(x=>`<tr><td>${esc(x.id)}</td><td>${esc(x.time||'')}</td><td><b>${esc(x.question)}</b></td><td>${esc(x.answer||'')}</td><td>${(x.concernPoints||[]).slice(0,3).map(y=>badge(y,'purple')).join('')}</td><td>${(x.dimensions||[]).slice(0,3).map(y=>badge(y,'blue')).join('')}</td><td>${(x.personas||[]).slice(0,2).map(y=>badge(y,'orange')).join('')}</td><td>${badge(x.barrier||'','blue')}</td></tr>`).join('')+'</tbody></table>'}
+function renderDetail(){const total=Math.max(1,Math.ceil(filtered.length/pageSize));if(page>total)page=total;const rows=filtered.slice((page-1)*pageSize,(page-1)*pageSize+pageSize);detailTable.innerHTML=tableDetail(rows);pageInfo.textContent=`共 ${filtered.length} 条，当前第 ${page} / ${total} 页`}
+function resetFilters(){['searchInput','dimFilter','personaFilter','barrierFilter','clusterFilter'].forEach(id=>document.getElementById(id).value='');page=1;applyFilters()}function prevPage(){if(page>1){page--;renderDetail()}}function nextPage(){const t=Math.max(1,Math.ceil(filtered.length/pageSize));if(page<t){page++;renderDetail()}}
+function activeNav(){const links=[...document.querySelectorAll('.nav a')],secs=[...document.querySelectorAll('section[id]')];const y=scrollY+120;let cur=secs[0]?.id;secs.forEach(s=>{if(y>=s.offsetTop)cur=s.id});links.forEach(a=>a.classList.toggle('active',a.getAttribute('href')==='#'+cur))}
+renderOverview();renderDecision();renderPersona();renderExpression();renderAd();renderDetailEvidence();renderAppendix();initFilters();applyFilters();activeNav();addEventListener('scroll',activeNav,{passive:true});addEventListener('resize',activeNav);
+</script>
+
+<script>
+(function(){
+  function warn(msg){
+    var div=document.createElement('div');
+    div.style.cssText='position:fixed;z-index:99999;left:18px;right:18px;top:18px;padding:16px 18px;border-radius:16px;background:#3b0b16;color:#fff;border:1px solid rgba(255,118,136,.55);box-shadow:0 16px 40px rgba(0,0,0,.35);font-family:-apple-system,BlinkMacSystemFont,"Microsoft YaHei",Arial,sans-serif;font-size:14px;line-height:1.7';
+    div.innerHTML='<b>V31 数据内嵌校验未通过：</b><br>'+msg+'<br><span style="color:#ffd6dd">请重新生成：必须把新产品完整 JSON 写入 dashboard-data，不能引用外部文件，不能保留样例数据。</span>';
+    document.body.appendChild(div);
+  }
+  try{
+    var el=document.getElementById('dashboard-data');
+    var raw=el?el.textContent.trim():'';
+    var d=raw?JSON.parse(raw):null;
+    var w=[];
+    if(!el) w.push('没有找到 dashboard-data 脚本标签。');
+    if(!raw || raw.length<300) w.push('dashboard-data 内容过短，疑似没有内嵌完整数据。');
+    if(raw.indexOf('__V31_JSON_PLACEHOLDER__')>=0) w.push('仍保留占位符。');
+    if(raw.indexOf('样例产品')>=0 || raw.indexOf('跨品类示例')>=0) w.push('仍保留样例数据，没有替换成新产品数据。');
+    if(!d || !Array.isArray(d.details) || d.details.length===0) w.push('details 明细为空，无法支持下钻和附录追溯。');
+    if(!d || !Array.isArray(d.adTestMatrix) || d.adTestMatrix.length<4) w.push('adTestMatrix 不足四类方向。');
+    if(w.length) setTimeout(function(){warn(w.join('<br>'));},300);
+  }catch(e){ setTimeout(function(){warn('dashboard-data 不是合法 JSON：'+String(e.message||e));},300); }
+})();
+</script>
+
+</body>
+</html>

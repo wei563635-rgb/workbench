@@ -1,0 +1,378 @@
+{
+  "meta": {
+    "productName": "样例产品",
+    "category": "跨品类示例",
+    "subCategory": "示例子类目",
+    "sourceFile": "sample.xlsx",
+    "generatedAt": "2026-06-02 13:12:25",
+    "version": "V31"
+  },
+  "summary": {
+    "total": 1200,
+    "category": "跨品类示例",
+    "oneSentence": "消费者核心不是只问价格，而是在验证价值、适配、风险和使用门槛。",
+    "coreConcern": "核心价值是否成立",
+    "mainPersona": "高顾虑细分人群",
+    "mainAdTestDirection": "通用人群｜核心价值/功效表达",
+    "dataBoundary": "问大家用于发现消费者疑问与表达方向，不代表真实购买人群占比。"
+  },
+  "details": [
+    {
+      "id": 1,
+      "time": "2026-01-01",
+      "question": "这个真的有用吗？适合新手吗？",
+      "answer": "可以，根据说明使用即可。",
+      "concernPoints": [
+        "效果真实性",
+        "新手适用"
+      ],
+      "dimensions": [
+        "效果/价值验证",
+        "使用门槛"
+      ],
+      "clusters": [
+        "价值疑问",
+        "使用疑问"
+      ],
+      "personas": [
+        "新手用户"
+      ],
+      "barrier": "价值验证",
+      "decisionStage": "结果验证"
+    },
+    {
+      "id": 2,
+      "time": "2026-01-02",
+      "question": "敏感人群能用吗，会不会有风险？",
+      "answer": "建议先确认适用边界。",
+      "concernPoints": [
+        "风险安全",
+        "适用边界"
+      ],
+      "dimensions": [
+        "风险消除",
+        "人群/场景适配"
+      ],
+      "clusters": [
+        "安全疑问"
+      ],
+      "personas": [
+        "高顾虑人群"
+      ],
+      "barrier": "风险顾虑",
+      "decisionStage": "风险消除"
+    }
+  ],
+  "decisionPoints": [
+    {
+      "id": "dp01",
+      "priority": "P0",
+      "name": "核心价值是否成立",
+      "count": 320,
+      "ratio": 0.267,
+      "consumerQuestion": "到底有没有用，值不值得点进去看？",
+      "examples": [
+        "这个真的有用吗？"
+      ],
+      "visualDirection": "推广图优先表达核心价值与结果证据。",
+      "detailDirection": "详情页首屏承接价值证明与适用边界。",
+      "relatedDetailIds": [
+        1
+      ]
+    },
+    {
+      "id": "dp02",
+      "priority": "P1",
+      "name": "风险与适用边界",
+      "count": 180,
+      "ratio": 0.15,
+      "consumerQuestion": "我这种情况能不能用，会不会踩坑？",
+      "examples": [
+        "敏感人群能用吗，会不会有风险？"
+      ],
+      "visualDirection": "细分人群推广图表达安全边界和适配条件。",
+      "detailDirection": "详情页补充风险说明、使用条件和FAQ。",
+      "relatedDetailIds": [
+        2
+      ]
+    }
+  ],
+  "personas": [
+    {
+      "id": "p01",
+      "name": "高顾虑人群",
+      "type": "风险敏感",
+      "count": 80,
+      "detailMatchCount": 120,
+      "confidence": "高置信",
+      "ratioText": "6.7%",
+      "topDimensions": [
+        {
+          "dimension": "风险消除",
+          "count": 50,
+          "ratio": 0.42
+        }
+      ],
+      "examples": [
+        "敏感人群能用吗，会不会有风险？"
+      ],
+      "insight": "想买但需要先确认风险边界。",
+      "action": "适合做风险消除表达。"
+    },
+    {
+      "id": "p02",
+      "name": "新手用户",
+      "type": "经验水平",
+      "count": 40,
+      "detailMatchCount": 65,
+      "confidence": "中置信",
+      "ratioText": "3.3%",
+      "topDimensions": [
+        {
+          "dimension": "使用门槛",
+          "count": 35,
+          "ratio": 0.54
+        }
+      ],
+      "examples": [
+        "适合新手吗？"
+      ],
+      "insight": "担心不会用、用错或麻烦。",
+      "action": "适合做易用性表达。"
+    }
+  ],
+  "personaDimensionMatrix": [
+    {
+      "persona": "高顾虑人群",
+      "dimension": "风险消除",
+      "count": 50,
+      "ratio": 0.42,
+      "detailIds": [
+        2
+      ]
+    },
+    {
+      "persona": "新手用户",
+      "dimension": "使用门槛",
+      "count": 35,
+      "ratio": 0.54,
+      "detailIds": [
+        1
+      ]
+    }
+  ],
+  "expressionCards": [
+    {
+      "id": "exp01",
+      "target": "通用人群",
+      "decisionPoint": "核心价值",
+      "logic": "先解决是否值得点击。",
+      "format": "结果证据 / 场景图 / 对比图",
+      "riskNote": "避免绝对化承诺。"
+    },
+    {
+      "id": "exp02",
+      "target": "高顾虑人群",
+      "decisionPoint": "风险消除",
+      "logic": "降低踩坑风险。",
+      "format": "边界说明 / 使用条件 / 安全提醒",
+      "riskNote": "不制造恐惧。"
+    }
+  ],
+  "adTestMatrix": [
+    {
+      "id": "ad01",
+      "title": "通用人群｜核心价值/功效表达",
+      "type": "universal",
+      "sampleBase": "核心价值验证320条",
+      "focus": [
+        "价值验证",
+        "结果证据",
+        "预期管理"
+      ],
+      "insight": "先测最大公约数，看基础盘是否愿意点击。",
+      "tests": [
+        {
+          "id": "A1",
+          "title": "核心价值结果方向",
+          "sampleData": "价值验证320条",
+          "whyTest": "最高频购买前判断。",
+          "pain": "怕没用、不值。",
+          "direction": "表达核心结果和价值证明。",
+          "visual": "结果场景 + 可信背书。",
+          "metric": "CTR、停留、加购"
+        },
+        {
+          "id": "A2",
+          "title": "适用问题覆盖方向",
+          "sampleData": "适配疑问180条",
+          "whyTest": "用户需要确认自己的问题被覆盖。",
+          "pain": "怕不适合自己。",
+          "direction": "表达适用范围与问题覆盖。",
+          "visual": "问题场景分区图。",
+          "metric": "CTR、咨询率"
+        }
+      ]
+    },
+    {
+      "id": "ad02",
+      "title": "细分人群A｜高顾虑/高价值表达",
+      "type": "persona",
+      "sampleBase": "风险顾虑180条",
+      "focus": [
+        "风险消除",
+        "适用边界"
+      ],
+      "insight": "高顾虑人群需要先降低风险。",
+      "tests": [
+        {
+          "id": "B1",
+          "title": "安全边界方向",
+          "sampleData": "风险顾虑180条",
+          "whyTest": "风险是阻碍加购的关键。",
+          "pain": "怕踩坑。",
+          "direction": "表达适用边界与风险控制。",
+          "visual": "边界说明 + 步骤图。",
+          "metric": "加购、转化、咨询率"
+        },
+        {
+          "id": "B2",
+          "title": "安心使用方向",
+          "sampleData": "使用疑问120条",
+          "whyTest": "明确使用方式可减少犹豫。",
+          "pain": "怕不会用。",
+          "direction": "表达简单、清晰、可控。",
+          "visual": "步骤卡片。",
+          "metric": "停留、加购"
+        }
+      ]
+    },
+    {
+      "id": "ad03",
+      "title": "细分人群B｜高场景/高意向表达",
+      "type": "scenario",
+      "sampleBase": "场景问题100条",
+      "focus": [
+        "使用场景",
+        "购买角色"
+      ],
+      "insight": "场景化表达能提高自我匹配。",
+      "tests": [
+        {
+          "id": "C1",
+          "title": "具体场景方向",
+          "sampleData": "场景问题100条",
+          "whyTest": "场景越具体越容易识别。",
+          "pain": "怕不适合自己的场景。",
+          "direction": "表达具体使用场景。",
+          "visual": "场景化图片。",
+          "metric": "CTR、停留"
+        },
+        {
+          "id": "C2",
+          "title": "角色代入方向",
+          "sampleData": "角色信号80条",
+          "whyTest": "购买角色影响表达。",
+          "pain": "给谁买、谁使用。",
+          "direction": "表达使用对象。",
+          "visual": "使用者/对象场景。",
+          "metric": "CTR、加购"
+        }
+      ]
+    },
+    {
+      "id": "ad04",
+      "title": "细分人群C｜复合问题/差异化表达",
+      "type": "differentiation",
+      "sampleBase": "复合问题90条",
+      "focus": [
+        "复合问题",
+        "差异化需求"
+      ],
+      "insight": "复合问题适合做差异化素材。",
+      "tests": [
+        {
+          "id": "D1",
+          "title": "复合痛点方向",
+          "sampleData": "复合问题90条",
+          "whyTest": "用户常同时有多个顾虑。",
+          "pain": "单点表达不能覆盖完整问题。",
+          "direction": "表达多个问题的组合解决路径。",
+          "visual": "多问题标签 + 场景图。",
+          "metric": "CTR、停留、加购"
+        },
+        {
+          "id": "D2",
+          "title": "差异化卖点方向",
+          "sampleData": "差异化需求70条",
+          "whyTest": "可测试区别于通用表达的增量。",
+          "pain": "同类产品难区分。",
+          "direction": "表达差异化价值。",
+          "visual": "对比式视觉。",
+          "metric": "CTR、转化"
+        }
+      ]
+    }
+  ],
+  "detailEvidence": [
+    {
+      "id": "de01",
+      "module": "核心价值信任模块",
+      "count": 320,
+      "ratio": "26.7%",
+      "why": "用户首先验证是否值得购买。",
+      "evidence": "价值验证问题为最高频。",
+      "carry": "详情页前屏放价值证据、场景和边界。",
+      "examples": [
+        "这个真的有用吗？"
+      ]
+    },
+    {
+      "id": "de02",
+      "module": "风险边界模块",
+      "count": 180,
+      "ratio": "15.0%",
+      "why": "高顾虑会阻碍加购。",
+      "evidence": "风险相关问题集中。",
+      "carry": "详情页补充适用条件、风险说明和FAQ。",
+      "examples": [
+        "会不会有风险？"
+      ]
+    }
+  ],
+  "coreTop20": [
+    {
+      "rank": 1,
+      "name": "核心价值验证",
+      "count": 320,
+      "ratio": 0.267,
+      "source": "核心关切",
+      "action": "优先进入通用功效表达。"
+    }
+  ],
+  "dimensions": [
+    {
+      "dimension": "效果/价值验证",
+      "count": 320,
+      "ratio": 0.267,
+      "ratioText": "26.7%",
+      "points": [
+        "有没有用",
+        "值不值"
+      ],
+      "explain": "用户先验证产品价值。"
+    },
+    {
+      "dimension": "风险消除",
+      "count": 180,
+      "ratio": 0.15,
+      "ratioText": "15.0%",
+      "points": [
+        "风险",
+        "适用边界"
+      ],
+      "explain": "用户需要降低踩坑风险。"
+    }
+  ],
+  "faqs": []
+}

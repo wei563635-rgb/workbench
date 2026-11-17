@@ -1,0 +1,463 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "V31 问大家消费者洞察看板标准中间JSON Schema",
+  "type": "object",
+  "required": [
+    "meta",
+    "summary",
+    "details",
+    "decisionPoints",
+    "personas",
+    "personaDimensionMatrix",
+    "expressionCards",
+    "adTestMatrix",
+    "detailEvidence",
+    "coreTop20",
+    "dimensions"
+  ],
+  "properties": {
+    "meta": {
+      "type": "object",
+      "required": [
+        "productName",
+        "category",
+        "version"
+      ],
+      "properties": {
+        "productName": {
+          "type": "string"
+        },
+        "category": {
+          "type": "string"
+        },
+        "subCategory": {
+          "type": "string"
+        },
+        "sourceFile": {
+          "type": "string"
+        },
+        "generatedAt": {
+          "type": "string"
+        },
+        "version": {
+          "type": "string",
+          "const": "V31"
+        }
+      }
+    },
+    "summary": {
+      "type": "object",
+      "required": [
+        "total",
+        "oneSentence",
+        "coreConcern",
+        "mainPersona",
+        "mainAdTestDirection",
+        "dataBoundary"
+      ],
+      "properties": {
+        "total": {
+          "type": "number"
+        },
+        "category": {
+          "type": "string"
+        },
+        "oneSentence": {
+          "type": "string"
+        },
+        "coreConcern": {
+          "type": "string"
+        },
+        "mainPersona": {
+          "type": "string"
+        },
+        "mainAdTestDirection": {
+          "type": "string"
+        },
+        "dataBoundary": {
+          "type": "string"
+        }
+      }
+    },
+    "details": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "question"
+        ],
+        "properties": {
+          "id": {
+            "type": [
+              "number",
+              "string"
+            ]
+          },
+          "time": {
+            "type": "string"
+          },
+          "question": {
+            "type": "string"
+          },
+          "answer": {
+            "type": "string"
+          },
+          "concernPoints": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "dimensions": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "clusters": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "personas": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "barrier": {
+            "type": "string"
+          },
+          "decisionStage": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "decisionPoints": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "name",
+          "count",
+          "consumerQuestion",
+          "visualDirection",
+          "detailDirection"
+        ],
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "priority": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "count": {
+            "type": "number"
+          },
+          "ratio": {
+            "type": "number"
+          },
+          "consumerQuestion": {
+            "type": "string"
+          },
+          "examples": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "visualDirection": {
+            "type": "string"
+          },
+          "detailDirection": {
+            "type": "string"
+          },
+          "relatedDetailIds": {
+            "type": "array",
+            "items": {
+              "type": [
+                "string",
+                "number"
+              ]
+            }
+          }
+        }
+      }
+    },
+    "personas": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "name",
+          "count"
+        ],
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string"
+          },
+          "count": {
+            "type": "number"
+          },
+          "detailMatchCount": {
+            "type": "number"
+          },
+          "confidence": {
+            "type": "string"
+          },
+          "ratioText": {
+            "type": "string"
+          },
+          "topDimensions": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "dimension": {
+                  "type": "string"
+                },
+                "count": {
+                  "type": "number"
+                },
+                "ratio": {
+                  "type": "number"
+                }
+              }
+            }
+          },
+          "examples": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "insight": {
+            "type": "string"
+          },
+          "action": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "personaDimensionMatrix": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "persona",
+          "dimension",
+          "count"
+        ],
+        "properties": {
+          "persona": {
+            "type": "string"
+          },
+          "dimension": {
+            "type": "string"
+          },
+          "count": {
+            "type": "number"
+          },
+          "ratio": {
+            "type": "number"
+          },
+          "detailIds": {
+            "type": "array",
+            "items": {
+              "type": [
+                "string",
+                "number"
+              ]
+            }
+          }
+        }
+      }
+    },
+    "expressionCards": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "target": {
+            "type": "string"
+          },
+          "decisionPoint": {
+            "type": "string"
+          },
+          "logic": {
+            "type": "string"
+          },
+          "format": {
+            "type": "string"
+          },
+          "riskNote": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "adTestMatrix": {
+      "type": "array",
+      "minItems": 4,
+      "items": {
+        "type": "object",
+        "required": [
+          "title",
+          "sampleBase",
+          "focus",
+          "tests"
+        ],
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "title": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string"
+          },
+          "sampleBase": {
+            "type": "string"
+          },
+          "focus": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "insight": {
+            "type": "string"
+          },
+          "tests": {
+            "type": "array",
+            "minItems": 2,
+            "maxItems": 3,
+            "items": {
+              "type": "object",
+              "required": [
+                "title",
+                "sampleData",
+                "whyTest",
+                "pain",
+                "direction",
+                "visual",
+                "metric"
+              ],
+              "properties": {
+                "id": {
+                  "type": "string"
+                },
+                "title": {
+                  "type": "string"
+                },
+                "sampleData": {
+                  "type": "string"
+                },
+                "whyTest": {
+                  "type": "string"
+                },
+                "pain": {
+                  "type": "string"
+                },
+                "direction": {
+                  "type": "string"
+                },
+                "visual": {
+                  "type": "string"
+                },
+                "metric": {
+                  "type": "string"
+                },
+                "relatedDetailIds": {
+                  "type": "array",
+                  "items": {
+                    "type": [
+                      "string",
+                      "number"
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "detailEvidence": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "module",
+          "why",
+          "evidence",
+          "carry"
+        ],
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "module": {
+            "type": "string"
+          },
+          "count": {
+            "type": "number"
+          },
+          "ratio": {
+            "type": "string"
+          },
+          "why": {
+            "type": "string"
+          },
+          "evidence": {
+            "type": "string"
+          },
+          "carry": {
+            "type": "string"
+          },
+          "examples": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "coreTop20": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "dimensions": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "faqs": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    }
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "toolKey": "demo-static-tool",
+  "name": "静态工具示例",
+  "version": "1.0.0",
+  "departmentKey": "ai-market",
+  "entry": "/tools/demo-static-tool/index.html",
+  "integrationType": "static",
+  "status": "normal",
+  "callbackEnabled": true,
+  "aiGatewayRequired": true,
+  "modelTypes": ["text"],
+  "resultTypes": ["json"],
+  "owner": "AI 市场部"
+}
+

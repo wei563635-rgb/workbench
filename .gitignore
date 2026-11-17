@@ -1,0 +1,14 @@
+.DS_Store
+.idea/
+*.iml
+node_modules/
+dist/
+target/
+outputs/
+.worktrees/
+_tmp_*
+backend/data/
+keys/
+.env
+.env.*
+!.env.example

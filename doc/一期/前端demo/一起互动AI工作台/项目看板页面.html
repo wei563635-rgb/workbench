@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>项目看板 - 一起互动-AI工作台</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="dashboard.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+  <div class="app-container">
+    <!-- Dark Theme Background Elements -->
+    <div class="fluid-glow"></div>
+    <div class="grid-mask"></div>
+
+    <nav class="sidebar-primary">
+      <div class="logo">
+        <div class="logo-icon"></div>
+        <span>一起互动AI工作台</span>
+      </div>
+      <ul class="nav-links" id="sidebar-nav">
+        <!-- 部门导航 -->
+        <li class="section-title" style="padding: 14px 20px 4px; font-size: 12px; color: #9CA3AF; text-transform: uppercase; letter-spacing: 1px;">AI工具</li>
+        <li class="dept-link" data-target="dept-market"><a href="工作台主页.html#dept-market"><i class="fa-solid fa-earth-americas"></i> AI 市场部</a></li>
+        <li class="dept-link" data-target="dept-design"><a href="工作台主页.html#dept-design"><i class="fa-solid fa-pen-nib"></i> AI 设计部</a></li>
+        <li class="dept-link" data-target="dept-operation"><a href="工作台主页.html#dept-operation"><i class="fa-solid fa-chart-line"></i> AI 运营部</a></li>
+        <li class="dept-link" data-target="dept-content"><a href="工作台主页.html#dept-content"><i class="fa-solid fa-video"></i> AI 内容部</a></li>
+        <li class="dept-link" data-target="dept-hr"><a href="工作台主页.html#dept-hr"><i class="fa-solid fa-users"></i> AI 人事部</a></li>
+        
+        <!-- 通用导航 -->
+        <li class="section-title" style="padding: 24px 20px 4px; font-size: 12px; color: #9CA3AF; text-transform: uppercase; letter-spacing: 1px;">通用</li>
+        <li><a href="项目页面.html"><i class="fa-solid fa-table-columns"></i> 项目</a></li>
+        <li class="active"><a href="项目看板页面.html"><i class="fa-solid fa-chart-pie"></i> 项目看板</a></li>
+        <li><a href="运行记录页面.html"><i class="fa-solid fa-clock-rotate-left"></i> 运行记录</a></li>
+        <li><a href="#"><i class="fa-solid fa-gear"></i> 配置中心</a></li>
+      </ul>
+      <div class="spacer"></div>
+      <div class="user-profile">
+        <div class="avatar">张</div>
+        <span class="user-name">张三 (管理员)</span>
+        <i class="fa-solid fa-user"></i>
+      </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      
+      <!-- Top Section: Data Dashboard -->
+      <div class="dashboard-stats-card card-premium">
+        <div class="stats-header">
+            <h3>整体项目统计</h3>
+            <div class="stats-filters">
+                <span class="active">本周</span>
+                <span>本月</span>
+                <span>更多 <i class="fa-solid fa-angle-down"></i></span>
+            </div>
+        </div>
+        <div class="stats-grid-5">
+            <!-- Stat 1 -->
+            <div class="stat-block glass-card card-premium">
+                <div class="stat-title"><i class="fa-solid fa-briefcase"></i> 总项目数</div>
+                <div class="stat-val">
+                    <span>156</span>
+                </div>
+            </div>
+            <!-- Stat 2 -->
+            <div class="stat-block glass-card card-premium">
+                <div class="stat-title"><i class="fa-solid fa-bars-progress"></i> 总体项目进度</div>
+                <div class="stat-val">
+                    <span>72%</span>
+                </div>
+            </div>
+            <!-- Stat 3 -->
+            <div class="stat-block glass-card card-premium">
+                <div class="stat-title"><i class="fa-solid fa-boxes-stacked"></i> 项目产出数</div>
+                <div class="stat-val">
+                    <span>4,250</span>
+                </div>
+            </div>
+            <!-- Stat 4 -->
+            <div class="stat-block glass-card card-premium">
+                <div class="stat-title"><i class="fa-solid fa-coins"></i> 消耗 Token 数</div>
+                <div class="stat-val">
+                    <span>18.5M</span>
+                </div>
+            </div>
+            <!-- Stat 5 -->
+            <div class="stat-block glass-card card-premium">
+                <div class="stat-title"><i class="fa-solid fa-image"></i> 图片生成数</div>
+                <div class="stat-val">
+                    <span>8,920</span>
+                </div>
+            </div>
+        </div>
+      </div>
+
+      <!-- Bottom Section: Detailed Project List -->
+      <div class="filter-bar" style="margin-top: 24px;">
+          <div class="search-box" style="position: relative;">
+              <i class="fa-solid fa-search" style="position: absolute; left: 12px; top: 50%; transform: translateY(-50%); color: #9CA3AF; font-size: 13px;"></i>
+              <input type="text" class="search-input" placeholder="输入项目名称或商品名称搜索" style="padding-left: 32px;">
+          </div>
+          
+          <div class="filter-item">
+              <span class="filter-label">按部门</span>
+              <select class="filter-select">
+                  <option value="all">全部部门</option>
+                  <option value="market">项目事业一部</option>
+                  <option value="design">项目事业二部</option>
+                  <option value="ops">品牌事业一部</option>
+                  <option value="hr">海外事业部</option>
+              </select>
+          </div>
+          
+          <div class="filter-item">
+              <span class="filter-label">按品牌</span>
+              <select class="filter-select">
+                  <option value="all">全部品牌</option>
+                  <option value="brand1">川井</option>
+                  <option value="brand2">沃朗森</option>
+                  <option value="brand3">中养说</option>
+                  <option value="brand4">加尔夫</option>
+              </select>
+          </div>
+          
+          <div class="filter-item">
+              <span class="filter-label">按创建人</span>
+              <select class="filter-select">
+                  <option value="all">全部人员</option>
+                  <option value="zhang">张三</option>
+                  <option value="li">李四</option>
+                  <option value="wang">王五</option>
+                  <option value="zhao">赵六</option>
+                  <option value="zhou">周七</option>
+              </select>
+          </div>
+      </div>
+
+      <div class="project-table-wrapper" style="margin-top: 16px;">
+            <table class="project-table">
+                <thead>
+                    <tr>
+                        <th>创建时间</th>
+                        <th>项目名称</th>
+                        <th>所属部门</th>
+                        <th>品牌</th>
+                        <th>商品名称</th>
+                        <th>创建人</th>
+                        <th>总体进度</th>
+                        <th>项目产出数</th>
+                        <th>Token消耗</th>
+                        <th>图片生成</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Row 1 -->
+                    <tr>
+                        <td>2026-06-28 09:15</td>
+                        <td>
+                            <div class="project-name-cell">
+                                <span>2026 夏季大促主推计划</span>
+                            </div>
+                        </td>
+                        <td><span class="dept-tag market">项目事业一部</span></td>
+                        <td>川井</td>
+                        <td>清凉薄荷防晒霜</td>
+                        <td>
+                            <div class="creator-cell">
+                                <div class="small-avatar">李</div>
+                                <span>李四</span>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="progress-cell">
+                                <div class="progress-bar-bg">
+                                    <div class="progress-bar-fill" style="width: 80%;"></div>
+                                </div>
+                                <span class="progress-text">8/10</span>
+                            </div>
+                        </td>
+                        <td><span class="num-val">128</span></td>
+                        <td><span class="num-val">450k</span></td>
+                        <td><span class="num-val">56</span></td>
+                    </tr>
+                    
+                    <!-- Row 2 -->
+                    <tr>
+                        <td>2026-06-27 14:30</td>
+                        <td>
+                            <div class="project-name-cell">
+                                <span>秋季新品包装设计</span>
+                            </div>
+                        </td>
+                        <td><span class="dept-tag design">项目事业二部</span></td>
+                        <td>沃朗森</td>
+                        <td>柔润保湿精华乳</td>
+                        <td>
+                            <div class="creator-cell">
+                                <div class="small-avatar">王</div>
+                                <span>王五</span>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="progress-cell">
+                                <div class="progress-bar-bg">
+                                    <div class="progress-bar-fill" style="width: 30%; background: #F59E0B;"></div>
+                                </div>
+                                <span class="progress-text">3/10</span>
+                            </div>
+                        </td>
+                        <td><span class="num-val">45</span></td>
+                        <td><span class="num-val">120k</span></td>
+                        <td><span class="num-val">320</span></td>
+                    </tr>
+
+                    <!-- Row 3 -->
+                    <tr>
+                        <td>2026-06-25 10:00</td>
+                        <td>
+                            <div class="project-name-cell">
+                                <span>双十一广告投放测试</span>
+                            </div>
+                        </td>
+                        <td><span class="dept-tag ops">品牌事业一部</span></td>
+                        <td>中养说</td>
+                        <td>多功能破壁机</td>
+                        <td>
+                            <div class="creator-cell">
+                                <div class="small-avatar">赵</div>
+                                <span>赵六</span>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="progress-cell">
+                                <div class="progress-bar-bg">
+                                    <div class="progress-bar-fill" style="width: 100%; background: #10B981;"></div>
+                                </div>
+                                <span class="progress-text">10/10</span>
+                            </div>
+                        </td>
+                        <td><span class="num-val">350</span></td>
+                        <td><span class="num-val">1.2M</span></td>
+                        <td><span class="num-val">12</span></td>
+                    </tr>
+                    
+                    <!-- Row 4 -->
+                    <tr>
+                        <td>2026-06-23 16:45</td>
+                        <td>
+                            <div class="project-name-cell">
+                                <span>新员工企业文化培训</span>
+                            </div>
+                        </td>
+                        <td><span class="dept-tag hr">海外事业部</span></td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>
+                            <div class="creator-cell">
+                                <div class="small-avatar">周</div>
+                                <span>周七</span>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="progress-cell">
+                                <div class="progress-bar-bg">
+                                    <div class="progress-bar-fill" style="width: 50%; background: #3B82F6;"></div>
+                                </div>
+                                <span class="progress-text">5/10</span>
+                            </div>
+                        </td>
+                        <td><span class="num-val">24</span></td>
+                        <td><span class="num-val">80k</span></td>
+                        <td><span class="num-val">0</span></td>
+                    </tr>
+                    
+                    <!-- Row 5 -->
+                    <tr>
+                        <td>2026-06-21 09:20</td>
+                        <td>
+                            <div class="project-name-cell">
+                                <span>冬季保暖内衣营销方案</span>
+                            </div>
+                        </td>
+                        <td><span class="dept-tag market">项目事业一部</span></td>
+                        <td>川井</td>
+                        <td>恒温发热系列</td>
+                        <td>
+                            <div class="creator-cell">
+                                <div class="small-avatar" style="background:#F59E0B;">陈</div>
+                                <span>陈七</span>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="progress-cell">
+                                <div class="progress-bar-bg">
+                                    <div class="progress-bar-fill" style="width: 15%; background: #EF4444;"></div>
+                                </div>
+                                <span class="progress-text">1/7</span>
+                            </div>
+                        </td>
+                        <td><span class="num-val">12</span></td>
+                        <td><span class="num-val">30k</span></td>
+                        <td><span class="num-val">210</span></td>
+                    </tr>
+
+                    <!-- Row 6 -->
+                    <tr>
+                        <td>2026-06-20 11:10</td>
+                        <td>
+                            <div class="project-name-cell">
+                                <span>美妆产品用户满意度调研</span>
+                            </div>
+                        </td>
+                        <td><span class="dept-tag ops">品牌事业一部</span></td>
+                        <td>沃朗森</td>
+                        <td>星空眼影盘</td>
+                        <td>
+                            <div class="creator-cell">
+                                <div class="small-avatar" style="background:#8B5CF6;">林</div>
+                                <span>林八</span>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="progress-cell">
+                                <div class="progress-bar-bg">
+                                    <div class="progress-bar-fill" style="width: 100%; background: #10B981;"></div>
+                                </div>
+                                <span class="progress-text">5/5</span>
+                            </div>
+                        </td>
+                        <td><span class="num-val">85</span></td>
+                        <td><span class="num-val">220k</span></td>
+                        <td><span class="num-val">45</span></td>
+                    </tr>
+
+                    <!-- Row 7 -->
+                    <tr>
+                        <td>2026-06-18 15:30</td>
+                        <td>
+                            <div class="project-name-cell">
+                                <span>品牌出海市场定位分析</span>
+                            </div>
+                        </td>
+                        <td><span class="dept-tag market">项目事业一部</span></td>
+                        <td>加尔夫</td>
+                        <td>-</td>
+                        <td>
+                            <div class="creator-cell">
+                                <div class="small-avatar" style="background:#E11D48;">刘</div>
+                                <span>刘九</span>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="progress-cell">
+                                <div class="progress-bar-bg">
+                                    <div class="progress-bar-fill" style="width: 65%; background: #1E76FF;"></div>
+                                </div>
+                                <span class="progress-text">13/20</span>
+                            </div>
+                        </td>
+                        <td><span class="num-val">340</span></td>
+                        <td><span class="num-val">1.5M</span></td>
+                        <td><span class="num-val">1,200</span></td>
+                    </tr>
+
+                </tbody>
+            </table>
+        </div>
+        
+        <!-- Pagination -->
+        <div class="pagination">
+            <button class="page-btn" disabled><i class="fa-solid fa-chevron-left"></i></button>
+            <button class="page-btn active">1</button>
+            <button class="page-btn">2</button>
+            <button class="page-btn">3</button>
+            <span class="page-ellipsis">...</span>
+            <button class="page-btn">8</button>
+            <button class="page-btn"><i class="fa-solid fa-chevron-right"></i></button>
+        </div>
+
+    </main>
+  </div>
+
+</body>
+</html>

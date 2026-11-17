@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head><meta charset="UTF-8"><title>静态工具示例</title></head>
+  <body>
+    <button id="run">运行工具</button>
+    <pre id="output"></pre>
+    <script>
+      async function postJson(url, body) {
+        const res = await fetch(url, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(body)
+        })
+        if (!res.ok) throw new Error(await res.text())
+        return res.json()
+      }
+
+      document.getElementById('run').onclick = async () => {
+        const started = await postJson('/api/tool-runs/start', {
+          toolKey: 'demo-static-tool',
+          userId: 'u_001',
+          inputSummary: '演示输入'
+        })
+        const ai = await postJson('/api/ai/chat/completions', {
+          runId: started.runId,
+          toolKey: 'demo-static-tool',
+          userId: 'u_001',
+          model: 'gpt-4.1',
+          params: { messages: [{ role: 'user', content: '生成一段演示结果' }] }
+        })
+        const finished = await postJson(`/api/tool-runs/${started.runId}/finish`, {
+          status: 'success',
+          outputSummary: '演示运行完成',
+          outputData: ai
+        })
+        document.getElementById('output').textContent = JSON.stringify(finished, null, 2)
+      }
+    </script>
+  </body>
+</html>
+

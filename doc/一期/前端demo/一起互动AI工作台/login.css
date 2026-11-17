@@ -1,0 +1,406 @@
+/* login.css - Trae AI Inspired Ultra-Sleek Developer Aesthetic */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;700&display=swap');
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body.login-page {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: #000000; /* Pure black */
+    height: 100vh;
+    overflow: hidden;
+    color: #EDEDED;
+    position: relative;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* ── Minimalist Ambient Glow with Fluid Motion ── */
+.bg-canvas {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    overflow: hidden;
+}
+
+.bg-canvas::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+    background-size: 32px 32px;
+    mask-image: radial-gradient(ellipse at center, black 50%, transparent 90%);
+    -webkit-mask-image: radial-gradient(ellipse at center, black 50%, transparent 90%);
+    z-index: 1;
+}
+
+/* Fluid Orbs for extreme neon glow */
+.orb {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(120px);
+    animation: fluidGlow 15s ease-in-out infinite alternate;
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.55;
+    mix-blend-mode: screen;
+}
+
+.orb-1 {
+    width: 600px;
+    height: 600px;
+    background: #6366F1; /* Indigo */
+    top: -200px;
+    left: -100px;
+    animation-delay: 0s;
+}
+
+.orb-2 {
+    width: 700px;
+    height: 700px;
+    background: #A855F7; /* Purple */
+    bottom: -300px;
+    right: -100px;
+    animation-delay: -5s;
+    animation-direction: alternate-reverse;
+}
+
+.orb-3 {
+    width: 500px;
+    height: 500px;
+    background: #5B55EA; /* Blue */
+    top: 30%;
+    left: 40%;
+    animation-delay: -10s;
+}
+
+@keyframes fluidGlow {
+    0% { transform: translate(0, 0) scale(1); }
+    33% { transform: translate(120px, -60px) scale(1.15); }
+    66% { transform: translate(-60px, 120px) scale(0.85); }
+    100% { transform: translate(60px, 60px) scale(1.1); }
+}
+
+/* ── Layout ── */
+.login-split-layout {
+    display: flex;
+    height: 100vh;
+    width: 100%;
+    position: relative;
+    z-index: 1;
+}
+
+/* ══════════════════════════════════════════
+   Left Side — Hero Typography
+   ══════════════════════════════════════════ */
+.login-left-brand {
+    flex: 1.2;
+    display: flex;
+    align-items: center;
+    padding: 60px 8%;
+    position: relative;
+}
+
+.brand-content {
+    max-width: 640px;
+    position: relative;
+    z-index: 2;
+}
+
+/* Logo */
+.brand-logo {
+    margin-bottom: 40px;
+    font-size: 20px;
+    font-weight: 700;
+    color: #FFFFFF;
+    letter-spacing: 0.02em;
+}
+
+/* Bold Headline */
+.hero-title {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    margin-bottom: 32px;
+}
+
+.hero-line {
+    font-size: 80px;
+    line-height: 1.05;
+    font-weight: 900;
+    letter-spacing: -3px;
+}
+
+.text-solid {
+    color: #FFFFFF;
+}
+
+.text-gradient {
+    background: linear-gradient(135deg, #A855F7 0%, #5B55EA 70%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* Stylized Description */
+.brand-desc-wrapper {
+    position: relative;
+    padding-left: 20px;
+    margin-bottom: 60px;
+    border-left: 2px solid rgba(99, 102, 241, 0.6); /* Indigo accent */
+}
+
+.brand-desc {
+    font-size: 16px;
+    line-height: 1.8;
+    color: #A1A1AA;
+    max-width: 480px;
+    font-weight: 400;
+    letter-spacing: 0.02em;
+}
+
+/* Dramatic Stats */
+.brand-stats {
+    display: flex;
+    gap: 48px;
+}
+
+.stat-item {
+    display: flex;
+    flex-direction: column;
+}
+
+.stat-label {
+    font-size: 12px;
+    color: #6366F1;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    margin-bottom: 4px;
+}
+
+.stat-item h3 {
+    font-size: 48px;
+    font-weight: 800;
+    color: #FFFFFF;
+    font-family: 'JetBrains Mono', 'Inter', monospace;
+    letter-spacing: -2px;
+    line-height: 1;
+}
+
+.stat-item h3 span {
+    font-size: 24px;
+    color: #71717A;
+    margin-left: 4px;
+}
+
+/* Hide the old department grid for maximum minimalism */
+.dept-showcase {
+    display: none;
+}
+
+/* ══════════════════════════════════════════
+   Right Side — Sleek Form
+   ══════════════════════════════════════════ */
+.login-right-form {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px;
+}
+
+/* Ultra-sleek card */
+.login-box {
+    width: 100%;
+    max-width: 400px;
+    background: rgba(9, 9, 11, 0.85); /* Zinc 950 */
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 16px;
+    padding: 48px 40px;
+    box-shadow: 0 0 0 1px rgba(255,255,255,0.03) inset, 0 32px 64px rgba(0, 0, 0, 0.6);
+}
+
+.login-header {
+    margin-bottom: 36px;
+}
+
+.login-header h2 {
+    font-size: 22px;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: #FFFFFF;
+    letter-spacing: -0.5px;
+}
+
+.login-header p {
+    font-size: 13px;
+    color: #A1A1AA;
+}
+
+/* ── Form Fields ── */
+.login-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.form-group label {
+    font-size: 12px;
+    font-weight: 500;
+    color: #D4D4D8;
+    letter-spacing: 0.02em;
+}
+
+.input-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.input-wrapper input {
+    width: 100%;
+    padding: 13px 16px;
+    background: #09090B;
+    border: 1px solid #27272A;
+    border-radius: 8px;
+    font-size: 14px;
+    color: #FFFFFF;
+    outline: none;
+    transition: all 0.2s ease;
+    font-family: inherit;
+}
+
+.input-wrapper input:focus {
+    border-color: #6366F1; /* Indigo 500 */
+    box-shadow: 0 0 0 1px #6366F1;
+    background: #000000;
+}
+
+.input-wrapper input::placeholder {
+    color: #52525B;
+}
+
+/* Hide icons for the Trae minimal look */
+.input-wrapper i.fa-user, .input-wrapper i.fa-lock {
+    display: none;
+}
+
+/* Password toggle button positioning */
+.btn-toggle-pwd {
+    position: absolute;
+    right: 14px;
+    color: #52525B;
+    cursor: pointer;
+    font-size: 14px;
+    transition: color 0.2s;
+}
+
+.btn-toggle-pwd:hover {
+    color: #A1A1AA;
+}
+
+/* ── Form Actions ── */
+.form-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: -4px;
+}
+
+.remember-me {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    font-size: 13px;
+    color: #A1A1AA;
+}
+
+.remember-me input[type="checkbox"] {
+    width: 14px;
+    height: 14px;
+    accent-color: #FFFFFF;
+    cursor: pointer;
+    border: 1px solid #27272A;
+    background: #09090B;
+}
+
+.forgot-pwd {
+    font-size: 13px;
+    color: #A1A1AA;
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+.forgot-pwd:hover {
+    color: #FFFFFF;
+}
+
+/* ── Trae Style High-Contrast Button ── */
+.btn-login {
+    background: #FFFFFF;
+    color: #000000;
+    border: none;
+    padding: 14px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    margin-top: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+}
+
+.btn-login:hover {
+    background: #E4E4E7;
+    transform: translateY(-1px);
+}
+
+.btn-login:active {
+    transform: translateY(0);
+}
+
+/* ── Footer ── */
+.form-divider {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 28px 0 16px;
+}
+
+.form-divider span {
+    font-size: 12px;
+    color: #52525B;
+    white-space: nowrap;
+}
+
+.form-divider::before,
+.form-divider::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: #27272A;
+}
+
+.login-footer {
+    text-align: center;
+}
+
+.login-footer p {
+    font-size: 12px;
+    color: #52525B;
+}

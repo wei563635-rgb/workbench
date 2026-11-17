@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>项目管理看板 - 一起互动-AI工作台</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="dashboard.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+  <div class="app-container">
+    <!-- Dark Theme Background Elements -->
+    <div class="fluid-glow"></div>
+    <div class="grid-mask"></div>
+
+    <!-- Primary Sidebar (Same as Home) -->
+    <nav class="sidebar-primary">
+      <div class="logo">
+        <div class="logo-icon"></div>
+        <span>一起互动AI工作台</span>
+      </div>
+      <ul class="nav-links" id="sidebar-nav">
+        <!-- 部门导航 -->
+        <li class="section-title" style="padding: 14px 20px 4px; font-size: 12px; color: #9CA3AF; text-transform: uppercase; letter-spacing: 1px;">AI工具</li>
+        <li class="dept-link" data-target="dept-market"><a href="工作台主页.html#dept-market"><i class="fa-solid fa-earth-americas"></i> AI 市场部</a></li>
+        <li class="dept-link" data-target="dept-design"><a href="工作台主页.html#dept-design"><i class="fa-solid fa-pen-nib"></i> AI 设计部</a></li>
+        <li class="dept-link" data-target="dept-operation"><a href="工作台主页.html#dept-operation"><i class="fa-solid fa-chart-line"></i> AI 运营部</a></li>
+        <li class="dept-link" data-target="dept-content"><a href="工作台主页.html#dept-content"><i class="fa-solid fa-video"></i> AI 内容部</a></li>
+        <li class="dept-link" data-target="dept-hr"><a href="工作台主页.html#dept-hr"><i class="fa-solid fa-users"></i> AI 人事部</a></li>
+        
+        <!-- 通用导航 -->
+        <li class="section-title" style="padding: 24px 20px 4px; font-size: 12px; color: #9CA3AF; text-transform: uppercase; letter-spacing: 1px;">通用</li>
+        <li class="active"><a href="项目页面.html"><i class="fa-solid fa-table-columns"></i> 项目</a></li>
+        <li><a href="项目看板页面.html"><i class="fa-solid fa-chart-pie"></i> 项目看板</a></li>
+        <li><a href="运行记录页面.html"><i class="fa-solid fa-clock-rotate-left"></i> 运行记录</a></li>
+        <li><a href="#"><i class="fa-solid fa-gear"></i> 配置中心</a></li>
+      </ul>
+      <div class="spacer"></div>
+      <div class="user-profile">
+        <div class="avatar">张</div>
+        <span class="user-name">张三 (管理员)</span>
+        <i class="fa-solid fa-user"></i>
+      </div>
+    </nav>
+
+    <!-- Secondary Sidebar for Projects -->
+    <aside class="sidebar-secondary">
+      <div class="sp-header">
+          <span>项目</span>
+          <button class="btn-add-project" title="新建项目"><i class="fa-solid fa-plus"></i></button>
+      </div>
+      <!-- Search and Filter -->
+      <div class="sp-filters" style="padding: 0 4px; margin-bottom: 16px; display: flex; flex-direction: column; gap: 10px;">
+          <div class="search-box" style="position: relative;">
+              <i class="fa-solid fa-search" style="position: absolute; left: 12px; top: 50%; transform: translateY(-50%); color: #9CA3AF; font-size: 13px;"></i>
+              <input type="text" placeholder="输入项目名称搜索" style="width: 100%; padding: 8px 12px 8px 32px; border: 1px solid #E5E7EB; border-radius: 8px; font-size: 13px; outline: none; box-sizing: border-box; color: #4B5563; background: #F9FAFB;">
+          </div>
+          <div class="filter-box">
+              <select style="width: 100%; padding: 8px 12px; border: 1px solid #E5E7EB; border-radius: 8px; font-size: 13px; outline: none; color: #4B5563; background-color: #F9FAFB; box-sizing: border-box; appearance: none; background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%239CA3AF%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E'); background-repeat: no-repeat; background-position: right 12px top 50%; background-size: 10px auto; cursor: pointer;">
+                  <option value="">全部部门</option>
+                  <option value="market">AI 市场部</option>
+                  <option value="design">AI 设计部</option>
+                  <option value="operation">AI 运营部</option>
+                  <option value="content">AI 内容部</option>
+                  <option value="hr">AI 人事部</option>
+              </select>
+          </div>
+      </div>
+      <ul class="sp-list">
+          <li class="active">
+              <div class="project-name">6月宠物饮水器投放优化</div>
+              <div class="project-tags">
+                  <span class="ptag">项目事业一部</span>
+              </div>
+          </li>
+          <li>
+              <div class="project-name">5月男士冰丝裤推广</div>
+              <div class="project-tags">
+                  <span class="ptag">项目事业二部</span>
+              </div>
+          </li>
+          <li>
+              <div class="project-name">夏季驱蚊手环推广</div>
+              <div class="project-tags">
+                  <span class="ptag">项目事业三部</span>
+              </div>
+          </li>
+      </ul>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <!-- Dashboard Content -->
+      <div class="dashboard-container">
+          
+          <!-- 1. Integrated Project Overview -->
+          <div class="project-overview-card" style="background:#FFFFFF; border-radius:20px; padding:24px; box-shadow:0 4px 12px rgba(0,0,0,0.05); backdrop-filter:blur(24px); margin-bottom:24px; display:flex; gap:24px; border:1px solid #E5E7EB;">
+              <!-- Left: Product Image -->
+              <div class="pi-image" style="width:140px; height:140px; border-radius:12px; background:#F3F4F6; display:flex; align-items:center; justify-content:center; font-size:40px; color:#6B7280; flex-shrink:0;">
+                  <i class="fa-solid fa-box-open"></i>
+              </div>
+              
+              <!-- Right: Integrated Info -->
+              <div class="po-content" style="flex:1;">
+                  <!-- Project Title & Status -->
+                  <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:12px;">
+                      <div>
+                          <h1 style="margin:0; font-size:22px; font-weight:700; color:#1A1C29; margin-bottom:8px;">6月宠物饮水器投放优化</h1>
+                          <div style="font-size:13px; color:#6B7280;">
+                              <i class="fa-solid fa-cube" style="color:#9CA3AF; width:16px;"></i> <span style="color:#6B7280;">商品名称：</span>智能宠物饮水器 自动循环过滤 2.5L大容量
+                          </div>
+                      </div>
+                      <span class="status-badge running" style="background:rgba(99, 102, 241, 0.1); color:#6366F1; padding:6px 12px; border-radius:20px; font-size:12px; font-weight:600;"><i class="fa-solid fa-spinner" style="margin-right:4px;"></i>进行中</span>
+                  </div>
+
+                  <!-- Details Grid -->
+                  <div style="display:grid; grid-template-columns: repeat(3, 1fr); gap:12px; font-size:13px; color:#6B7280;">
+                      <div><i class="fa-solid fa-building" style="color:#9CA3AF; width:16px;"></i> <span style="color:#6B7280;">所属部门：</span>项目事业一部</div>
+                      <div><i class="fa-solid fa-copyright" style="color:#9CA3AF; width:16px;"></i> <span style="color:#6B7280;">所属品牌：</span>川井</div>
+                      <div><i class="fa-solid fa-user-tie" style="color:#9CA3AF; width:16px;"></i> <span style="color:#6B7280;">负责人：</span>张三</div>
+                      <div><i class="fa-solid fa-tags" style="color:#9CA3AF; width:16px;"></i> <span style="color:#6B7280;">类目：</span>宠物用品 &gt; 喂食器/饮水器</div>
+                      <div><i class="fa-solid fa-yen-sign" style="color:#9CA3AF; width:16px;"></i> <span style="color:#6B7280;">售价：</span>¥129.00</div>
+                      <div><i class="fa-regular fa-calendar-check" style="color:#9CA3AF; width:16px;"></i> <span style="color:#6B7280;">立项时间：</span>2026-06-25</div>
+                      <div style="grid-column: span 3; line-height: 1.5; margin-top: 4px;"><i class="fa-solid fa-lightbulb" style="color:#9CA3AF; width:16px;"></i> <span style="color:#6B7280;">商品卖点：</span>2026年夏季主推款，主打静音马达设计、四层循环过滤、2.5L大容量，满足猫咪一周饮水量。全身可拆洗设计，有效解决传统饮水器难以清洗的痛点。</div>
+                  </div>
+              </div>
+          </div>
+
+          <!-- Project Statistics -->
+          <div class="dashboard-stats-card card-premium" style="margin-bottom: 24px; padding: 16px 20px;">
+            <div class="stats-header" style="margin-bottom: 12px; display: flex; align-items: center;">
+                <h3 style="font-size: 18px; font-weight: 600; color: #1A1C29; margin: 0;">项目数据统计</h3>
+            </div>
+            <div style="display:grid; grid-template-columns: repeat(4, 1fr); gap:16px; margin-top: 12px;">
+                <div class="stat-block glass-card card-premium" style="padding: 12px 16px;">
+                    <div class="stat-title" style="margin-bottom: 4px; font-size: 12px;"><i class="fa-solid fa-bars-progress"></i> 当前任务进度</div>
+                    <div class="stat-val" style="font-size: 22px;">
+                        <span>66%</span>
+                    </div>
+                </div>
+                <div class="stat-block glass-card card-premium" style="padding: 12px 16px;">
+                    <div class="stat-title" style="margin-bottom: 4px; font-size: 12px;"><i class="fa-solid fa-boxes-stacked"></i> 累计产出物</div>
+                    <div class="stat-val" style="font-size: 22px;">
+                        <span>12</span>
+                    </div>
+                </div>
+                <div class="stat-block glass-card card-premium" style="padding: 12px 16px;">
+                    <div class="stat-title" style="margin-bottom: 4px; font-size: 12px;"><i class="fa-solid fa-coins"></i> 消耗 Token 数</div>
+                    <div class="stat-val" style="font-size: 22px;">
+                        <span>24.5K</span>
+                    </div>
+                </div>
+                <div class="stat-block glass-card card-premium" style="padding: 12px 16px;">
+                    <div class="stat-title" style="margin-bottom: 4px; font-size: 12px;"><i class="fa-solid fa-image"></i> 图片生成数</div>
+                    <div class="stat-val" style="font-size: 22px;">
+                        <span>8</span>
+                    </div>
+                </div>
+            </div>
+          </div>
+
+          <!-- 3. Workflow Pipeline -->
+          <div class="workflow-board-section card-premium" style="margin-bottom: 24px; padding: 24px;">
+              <div class="stats-header" style="margin-bottom: 20px;">
+                  <h3 style="font-size: 18px; font-weight: 600; color: #1A1C29; margin: 0;">任务</h3>
+              </div>
+
+              <div class="workflow-lanes-container">
+                  <!-- Stage 1 -->
+                  <div class="workflow-lane">
+                      <div class="lane-header">
+                          <h4 style="margin:0; font-size:18px; font-weight:700; color:#1A1C29;">AI 市场部</h4>
+                          <span class="stage-count">2/3 任务已完成</span>
+                      </div>
+                      
+                      <!-- Task Slot 1: Done -->
+                      <div class="task-slot">
+                          <div class="node-card completed">
+                              <div class="node-status-badge"><i class="fa-solid fa-check"></i></div>
+                              <div class="node-tool-title"><i class="fa-solid fa-earth-americas"></i> 市场情报</div>
+                              <div class="node-preview">发现蓝海机会：大容量且易清洗。</div>
+                              <div class="node-footer">
+                                  <div class="nf-info">
+                                      <div class="node-author">
+                                          <div class="small-avatar">李</div><span>李四</span>
+                                      </div>
+                                      <span class="nf-time">今天 10:30</span>
+                                  </div>
+                                  <button class="btn-outline-sm">查看</button>
+                              </div>
+                          </div>
+                      </div>
+                      <!-- Task Slot 2: Done -->
+                      <div class="task-slot">
+                          <div class="node-card completed">
+                              <div class="node-status-badge"><i class="fa-solid fa-check"></i></div>
+                              <div class="node-tool-title"><i class="fa-solid fa-users-viewfinder"></i> 消费者洞察</div>
+                              <div class="node-preview">目标客群：20-30岁女性，重视颜值。</div>
+                              <div class="node-footer">
+                                  <div class="nf-info">
+                                      <div class="node-author">
+                                          <div class="small-avatar">张</div><span>张三</span>
+                                      </div>
+                                      <span class="nf-time">昨天 14:00</span>
+                                  </div>
+                                  <button class="btn-outline-sm">查看</button>
+                              </div>
+                          </div>
+                      </div>
+                      <!-- Task Slot 3: Empty -->
+                      <div class="task-slot">
+                          <div class="node-card empty">
+                              <div class="node-tool-title"><i class="fa-solid fa-store"></i> 竞店分析</div>
+                              <div class="node-preview">待运行此工具以生成结果</div>
+                              <div class="node-footer" style="border-top: none; padding-top:0;">
+                                  <button class="btn-run-tool">去执行 <i class="fa-solid fa-arrow-right"></i></button>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+
+                  <!-- Stage 2 -->
+                  <div class="workflow-lane">
+                      <div class="lane-header">
+                          <h4 style="margin:0; font-size:18px; font-weight:700; color:#1A1C29;">AI 设计部</h4>
+                          <span class="stage-count">1/2 任务已完成</span>
+                      </div>
+                      
+                      <!-- Task Slot 1: Done -->
+                      <div class="task-slot">
+                          <div class="node-card completed">
+                              <div class="node-status-badge"><i class="fa-solid fa-check"></i></div>
+                              <div class="node-tool-title"><i class="fa-solid fa-cube"></i> 建模与渲染</div>
+                              <div class="node-preview">已完成 3D 基础模型渲染。</div>
+                              <div class="node-footer">
+                                  <div class="nf-info">
+                                      <div class="node-author">
+                                          <div class="small-avatar">李</div><span>李四</span>
+                                      </div>
+                                      <span class="nf-time">昨天 16:45</span>
+                                  </div>
+                                  <button class="btn-outline-sm">查看</button>
+                              </div>
+                          </div>
+                      </div>
+                      <!-- Task Slot 2: Empty -->
+                      <div class="task-slot">
+                          <div class="node-card empty">
+                              <div class="node-tool-title"><i class="fa-solid fa-image"></i> 推广图制作</div>
+                              <div class="node-preview">待运行此工具以生成结果</div>
+                              <div class="node-footer" style="border-top: none; padding-top:0;">
+                                  <button class="btn-run-tool">去执行 <i class="fa-solid fa-arrow-right"></i></button>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+
+                  <!-- Stage 3 -->
+                  <div class="workflow-lane active">
+                      <div class="lane-header">
+                          <h4 style="margin:0; font-size:18px; font-weight:700; color:#1A1C29;">AI 运营部</h4>
+                          <span class="stage-count">1/1 任务已完成</span>
+                      </div>
+                      
+                      <!-- Task Slot 1: Done -->
+                      <div class="task-slot">
+                          <div class="node-card completed">
+                              <div class="node-status-badge"><i class="fa-solid fa-check"></i></div>
+                              <div class="node-tool-title"><i class="fa-solid fa-map-location-dot"></i> 地域优化</div>
+                              <div class="node-preview">建议向一线及新一线城市倾斜预算。</div>
+                              <div class="node-footer">
+                                  <div class="nf-info">
+                                      <div class="node-author">
+                                          <div class="small-avatar">王</div><span>王五</span>
+                                      </div>
+                                      <span class="nf-time">刚刚</span>
+                                  </div>
+                                  <button class="btn-outline-sm">查看</button>
+                              </div>
+                          </div>
+                      </div>
+
+                  </div>
+
+
+              </div>
+          </div>
+      </div>
+    </main>
+  </div>
+</body>
+</html>

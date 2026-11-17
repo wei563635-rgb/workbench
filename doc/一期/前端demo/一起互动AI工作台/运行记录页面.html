@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>运行记录 - 一起互动-AI工作台</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="dashboard.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+  <div class="app-container">
+    <!-- Dark Theme Background Elements -->
+    <div class="fluid-glow"></div>
+    <div class="grid-mask"></div>
+
+    <nav class="sidebar-primary">
+      <div class="logo">
+        <div class="logo-icon"></div>
+        <span>一起互动AI工作台</span>
+      </div>
+      <ul class="nav-links" id="sidebar-nav">
+        <!-- 部门导航 -->
+        <li class="section-title" style="padding: 14px 20px 4px; font-size: 12px; color: #9CA3AF; text-transform: uppercase; letter-spacing: 1px;">AI工具</li>
+        <li class="dept-link" data-target="dept-market"><a href="工作台主页.html#dept-market"><i class="fa-solid fa-earth-americas"></i> AI 市场部</a></li>
+        <li class="dept-link" data-target="dept-design"><a href="工作台主页.html#dept-design"><i class="fa-solid fa-pen-nib"></i> AI 设计部</a></li>
+        <li class="dept-link" data-target="dept-operation"><a href="工作台主页.html#dept-operation"><i class="fa-solid fa-chart-line"></i> AI 运营部</a></li>
+        <li class="dept-link" data-target="dept-content"><a href="工作台主页.html#dept-content"><i class="fa-solid fa-video"></i> AI 内容部</a></li>
+        <li class="dept-link" data-target="dept-hr"><a href="工作台主页.html#dept-hr"><i class="fa-solid fa-users"></i> AI 人事部</a></li>
+        
+        <!-- 通用导航 -->
+        <li class="section-title" style="padding: 24px 20px 4px; font-size: 12px; color: #9CA3AF; text-transform: uppercase; letter-spacing: 1px;">通用</li>
+        <li><a href="项目页面.html"><i class="fa-solid fa-table-columns"></i> 项目</a></li>
+        <li><a href="项目看板页面.html"><i class="fa-solid fa-chart-pie"></i> 项目看板</a></li>
+        <li class="active"><a href="运行记录页面.html"><i class="fa-solid fa-clock-rotate-left"></i> 运行记录</a></li>
+        <li><a href="#"><i class="fa-solid fa-gear"></i> 配置中心</a></li>
+      </ul>
+      <div class="spacer"></div>
+      <div class="user-profile">
+        <div class="avatar">张</div>
+        <span class="user-name">张三 (管理员)</span>
+        <i class="fa-solid fa-user"></i>
+      </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      
+      <!-- Filter Bar -->
+      <div class="filter-bar">
+          <input type="text" class="search-input" placeholder="搜索工具或记录...">
+          
+          <div class="filter-item">
+              <span class="filter-label">记录类型</span>
+              <select class="filter-select">
+                  <option value="all">全部记录</option>
+                  <option value="run">运行记录</option>
+              </select>
+          </div>
+          
+          <div class="filter-item">
+              <span class="filter-label">员工</span>
+              <select class="filter-select">
+                  <option value="all">全部员工</option>
+                  <option value="zhang">张三</option>
+                  <option value="li">李四</option>
+                  <option value="wang">王五</option>
+                  <option value="zhao">赵六</option>
+              </select>
+          </div>
+
+          <div class="filter-item">
+              <span class="filter-label">所属部门</span>
+              <select class="filter-select">
+                  <option value="all">全部部门</option>
+                  <option value="market">项目事业一部</option>
+                  <option value="design">项目事业二部</option>
+                  <option value="ops">品牌事业一部</option>
+                  <option value="hr">海外事业部</option>
+              </select>
+          </div>
+
+          <div class="filter-item">
+              <span class="filter-label">关联状态</span>
+              <select class="filter-select">
+                  <option value="all">全部状态</option>
+                  <option value="linked">已关联项目</option>
+                  <option value="unlinked">未关联项目</option>
+              </select>
+          </div>
+      </div>
+
+      <!-- Log List -->
+      <div class="project-table-wrapper" style="margin-top: 16px;">
+          <table class="project-table">
+              <thead>
+                  <tr>
+                      <th>时间</th>
+                      <th>记录类型</th>
+                      <th>工具名称</th>
+                      <th>员工</th>
+                      <th>所属部门</th>
+                      <th>资源消耗</th>
+                      <th>所属项目</th>
+                      <th>状态</th>
+                      <th>操作</th>
+                  </tr>
+              </thead>
+              <tbody>
+                  <!-- Row 1: 运行记录 -->
+                  <tr>
+                      <td>2026-06-29 10:30:12</td>
+                      <td>
+                          <span class="record-badge badge-run">运行</span>
+                      </td>
+                      <td>
+                          <div class="project-name-cell">
+                              <div class="project-icon" style="width:28px;height:28px;font-size:12px;"><i class="fa-solid fa-earth-americas"></i></div>
+                              <span>市场情报分析</span>
+                          </div>
+                          <div style="font-size:12px;color:#9CA3AF;margin-top:4px;">提取核心痛点及人群分布...</div>
+                      </td>
+                      <td>
+                          <div class="creator-cell">
+                              <div class="small-avatar">张</div>
+                              <span>张三</span>
+                          </div>
+                      </td>
+                      <td><span class="dept-tag market">项目事业一部</span></td>
+                      <td>
+                          <div class="num-val">12,450 Tk</div>
+                          <div style="font-size:12px;color:#9CA3AF;">18.4s</div>
+                      </td>
+                      <td>
+                          <div style="font-size:13px; font-weight:500; color:#1A1C29;">春季新品营销</div>
+                      </td>
+                      <td>
+                          <span class="status-dot status-success"></span>成功
+                      </td>
+                      <td>
+                          <div class="btn-action-group">
+                              <button class="btn-icon-sm open-drawer-btn" title="查看详情"><i class="fa-solid fa-eye"></i></button>
+                              <button class="btn-icon-sm" title="复制结果"><i class="fa-regular fa-copy"></i></button>
+                              <button class="btn-icon-sm" title="重新关联项目"><i class="fa-solid fa-link"></i></button>
+                          </div>
+                      </td>
+                  </tr>
+                  
+                  <!-- Row 2: 生成图片 -->
+                  <tr>
+                      <td>2026-06-29 09:15:00</td>
+                      <td>
+                          <span class="record-badge badge-run">运行</span>
+                      </td>
+                      <td>
+                          <div class="project-name-cell">
+                              <div class="project-icon" style="width:28px;height:28px;font-size:12px;background:rgba(225, 29, 72, 0.1);color:#FB7185;"><i class="fa-solid fa-cube"></i></div>
+                              <span>推广图制作</span>
+                          </div>
+                          <div style="font-size:12px;color:#9CA3AF;margin-top:4px;">生成夏季新品海报4张...</div>
+                      </td>
+                      <td>
+                          <div class="creator-cell">
+                              <div class="small-avatar" style="background:#10B981;">李</div>
+                              <span>李四</span>
+                          </div>
+                      </td>
+                      <td><span class="dept-tag design">项目事业二部</span></td>
+                      <td>
+                          <div class="num-val">4 Image</div>
+                          <div style="font-size:12px;color:#9CA3AF;">45.2s</div>
+                      </td>
+                      <td>
+                          <span style="color:#9CA3AF;">-</span>
+                      </td>
+                      <td>
+                          <span class="status-dot status-success"></span>成功
+                      </td>
+                      <td>
+                          <div class="btn-action-group">
+                              <button class="btn-icon-sm open-drawer-btn" title="查看详情"><i class="fa-solid fa-eye"></i></button>
+                              <button class="btn-icon-sm" title="下载附件"><i class="fa-solid fa-download"></i></button>
+                              <button class="btn-icon-sm" title="关联项目"><i class="fa-solid fa-link"></i></button>
+                          </div>
+                      </td>
+                  </tr>
+
+
+                  <!-- Row 5: 失败记录 -->
+                  <tr>
+                      <td>2026-06-28 11:20:45</td>
+                      <td>
+                          <span class="record-badge badge-run">运行</span>
+                      </td>
+                      <td>
+                          <div class="project-name-cell">
+                              <div class="project-icon" style="width:28px;height:28px;font-size:12px;"><i class="fa-solid fa-users-viewfinder"></i></div>
+                              <span>消费者洞察</span>
+                          </div>
+                          <div style="font-size:12px;color:#EF4444;margin-top:4px;">API Timeout 接口超时</div>
+                      </td>
+                      <td>
+                          <div class="creator-cell">
+                              <div class="small-avatar">张</div>
+                              <span>张三</span>
+                          </div>
+                      </td>
+                      <td><span class="dept-tag market">项目事业一部</span></td>
+                      <td>
+                          <div class="num-val">842 Tk</div>
+                          <div style="font-size:12px;color:#9CA3AF;">60.0s</div>
+                      </td>
+                      <td>
+                          <span style="color:#9CA3AF;">-</span>
+                      </td>
+                      <td>
+                          <span class="status-dot status-failed"></span>失败
+                      </td>
+                      <td>
+                          <div class="btn-action-group">
+                              <button class="btn-icon-sm open-drawer-btn" title="查看详情"><i class="fa-solid fa-eye"></i></button>
+                          </div>
+                      </td>
+                  </tr>
+
+                  <!-- Replicated Row 1 -->
+                  <tr>
+                      <td>2026-06-27 15:20:10</td>
+                      <td>
+                          <span class="record-badge badge-run">运行</span>
+                      </td>
+                      <td>
+                          <div class="project-name-cell">
+                              <div class="project-icon" style="width:28px;height:28px;font-size:12px;background:rgba(99, 102, 241, 0.1);color:#818CF8;"><i class="fa-solid fa-pen-nib"></i></div>
+                              <span>产品文案生成</span>
+                          </div>
+                          <div style="font-size:12px;color:#9CA3AF;margin-top:4px;">生成新款运动鞋卖点...</div>
+                      </td>
+                      <td>
+                          <div class="creator-cell">
+                              <div class="small-avatar" style="background:#F59E0B;">王</div>
+                              <span>王五</span>
+                          </div>
+                      </td>
+                      <td><span class="dept-tag ops">品牌事业一部</span></td>
+                      <td>
+                          <div class="num-val">2,100 Tk</div>
+                          <div style="font-size:12px;color:#9CA3AF;">3.5s</div>
+                      </td>
+                      <td>
+                          <span style="color:#9CA3AF;">-</span>
+                      </td>
+                      <td>
+                          <span class="status-dot status-success"></span>成功
+                      </td>
+                      <td>
+                          <div class="btn-action-group">
+                              <button class="btn-icon-sm open-drawer-btn" title="查看详情"><i class="fa-solid fa-eye"></i></button>
+                              <button class="btn-icon-sm" title="复制结果"><i class="fa-regular fa-copy"></i></button>
+                              <button class="btn-icon-sm" title="关联项目"><i class="fa-solid fa-link"></i></button>
+                          </div>
+                      </td>
+                  </tr>
+                  
+                  <!-- Replicated Row 2 -->
+                  <tr>
+                      <td>2026-06-26 09:05:00</td>
+                      <td>
+                          <span class="record-badge badge-run">运行</span>
+                      </td>
+                      <td>
+                          <div class="project-name-cell">
+                              <div class="project-icon" style="width:28px;height:28px;font-size:12px;"><i class="fa-solid fa-earth-americas"></i></div>
+                              <span>市场情报分析</span>
+                          </div>
+                          <div style="font-size:12px;color:#9CA3AF;margin-top:4px;">竞品夏季销量对比...</div>
+                      </td>
+                      <td>
+                          <div class="creator-cell">
+                              <div class="small-avatar">张</div>
+                              <span>张三</span>
+                          </div>
+                      </td>
+                      <td><span class="dept-tag market">项目事业一部</span></td>
+                      <td>
+                          <div class="num-val">8,500 Tk</div>
+                          <div style="font-size:12px;color:#9CA3AF;">12.1s</div>
+                      </td>
+                      <td>
+                          <div style="font-size:13px; font-weight:500; color:#1A1C29;">竞品分析报告</div>
+                      </td>
+                      <td>
+                          <span class="status-dot status-success"></span>成功
+                      </td>
+                      <td>
+                          <div class="btn-action-group">
+                              <button class="btn-icon-sm open-drawer-btn" title="查看详情"><i class="fa-solid fa-eye"></i></button>
+                              <button class="btn-icon-sm" title="复制结果"><i class="fa-regular fa-copy"></i></button>
+                              <button class="btn-icon-sm" title="重新关联项目"><i class="fa-solid fa-link"></i></button>
+                          </div>
+                      </td>
+                  </tr>
+
+                  <!-- Replicated Row 3 -->
+                  <tr>
+                      <td>2026-06-25 14:15:33</td>
+                      <td><span class="record-badge badge-run">运行</span></td>
+                      <td>
+                          <div class="project-name-cell">
+                              <div class="project-icon" style="width:28px;height:28px;font-size:12px;background:rgba(217, 119, 6, 0.1);color:#FBBF24;"><i class="fa-solid fa-video"></i></div>
+                              <span>短视频脚本创作</span>
+                          </div>
+                          <div style="font-size:12px;color:#9CA3AF;margin-top:4px;">生成抖音60秒推广短...</div>
+                      </td>
+                      <td>
+                          <div class="creator-cell"><div class="small-avatar" style="background:#8B5CF6;">陈</div><span>陈七</span></div>
+                      </td>
+                      <td><span class="dept-tag hr">海外事业部</span></td>
+                      <td>
+                          <div class="num-val">3,250 Tk</div><div style="font-size:12px;color:#9CA3AF;">8.2s</div>
+                      </td>
+                      <td><span style="color:#9CA3AF;">-</span></td>
+                      <td><span class="status-dot status-success"></span>成功</td>
+                      <td>
+                          <div class="btn-action-group">
+                              <button class="btn-icon-sm open-drawer-btn" title="查看详情"><i class="fa-solid fa-eye"></i></button>
+                              <button class="btn-icon-sm" title="复制结果"><i class="fa-regular fa-copy"></i></button>
+                              <button class="btn-icon-sm" title="关联项目"><i class="fa-solid fa-link"></i></button>
+                          </div>
+                      </td>
+                  </tr>
+
+                  <!-- Replicated Row 4 -->
+                  <tr>
+                      <td>2026-06-24 10:45:12</td>
+                      <td><span class="record-badge badge-run">运行</span></td>
+                      <td>
+                          <div class="project-name-cell">
+                              <div class="project-icon" style="width:28px;height:28px;font-size:12px;background:rgba(225, 29, 72, 0.1);color:#FB7185;"><i class="fa-solid fa-cube"></i></div>
+                              <span>推广图制作</span>
+                          </div>
+                          <div style="font-size:12px;color:#9CA3AF;margin-top:4px;">端午节促销海报生成...</div>
+                      </td>
+                      <td>
+                          <div class="creator-cell"><div class="small-avatar" style="background:#10B981;">李</div><span>李四</span></div>
+                      </td>
+                      <td><span class="dept-tag design">项目事业二部</span></td>
+                      <td>
+                          <div class="num-val">2 Image</div><div style="font-size:12px;color:#9CA3AF;">35.8s</div>
+                      </td>
+                      <td><div style="font-size:13px; font-weight:500; color:#1A1C29;">端午营销活动</div></td>
+                      <td><span class="status-dot status-success"></span>成功</td>
+                      <td>
+                          <div class="btn-action-group">
+                              <button class="btn-icon-sm open-drawer-btn" title="查看详情"><i class="fa-solid fa-eye"></i></button>
+                              <button class="btn-icon-sm" title="下载附件"><i class="fa-solid fa-download"></i></button>
+                              <button class="btn-icon-sm" title="重新关联项目"><i class="fa-solid fa-link"></i></button>
+                          </div>
+                      </td>
+                  </tr>
+
+                  <!-- Replicated Row 5 -->
+                  <tr>
+                      <td>2026-06-23 16:30:22</td>
+                      <td><span class="record-badge badge-run">运行</span></td>
+                      <td>
+                          <div class="project-name-cell">
+                              <div class="project-icon" style="width:28px;height:28px;font-size:12px;"><i class="fa-solid fa-earth-americas"></i></div>
+                              <span>市场情报分析</span>
+                          </div>
+                          <div style="font-size:12px;color:#9CA3AF;margin-top:4px;">用户画像深度挖掘...</div>
+                      </td>
+                      <td>
+                          <div class="creator-cell"><div class="small-avatar">张</div><span>张三</span></div>
+                      </td>
+                      <td><span class="dept-tag market">项目事业一部</span></td>
+                      <td>
+                          <div class="num-val">15,300 Tk</div><div style="font-size:12px;color:#9CA3AF;">22.5s</div>
+                      </td>
+                      <td><span style="color:#9CA3AF;">-</span></td>
+                      <td><span class="status-dot status-success"></span>成功</td>
+                      <td>
+                          <div class="btn-action-group">
+                              <button class="btn-icon-sm open-drawer-btn" title="查看详情"><i class="fa-solid fa-eye"></i></button>
+                              <button class="btn-icon-sm" title="复制结果"><i class="fa-regular fa-copy"></i></button>
+                              <button class="btn-icon-sm" title="关联项目"><i class="fa-solid fa-link"></i></button>
+                          </div>
+                      </td>
+                  </tr>
+                  
+                  <!-- Replicated Row 6 -->
+                  <tr>
+                      <td>2026-06-23 09:12:05</td>
+                      <td><span class="record-badge badge-run">运行</span></td>
+                      <td>
+                          <div class="project-name-cell">
+                              <div class="project-icon" style="width:28px;height:28px;font-size:12px;background:rgba(99, 102, 241, 0.1);color:#818CF8;"><i class="fa-solid fa-pen-nib"></i></div>
+                              <span>产品文案生成</span>
+                          </div>
+                          <div style="font-size:12px;color:#EF4444;margin-top:4px;">Token 超出模型限制</div>
+                      </td>
+                      <td>
+                          <div class="creator-cell"><div class="small-avatar" style="background:#F59E0B;">王</div><span>王五</span></div>
+                      </td>
+                      <td><span class="dept-tag ops">品牌事业一部</span></td>
+                      <td>
+                          <div class="num-val">32,150 Tk</div><div style="font-size:12px;color:#9CA3AF;">4.1s</div>
+                      </td>
+                      <td><span style="color:#9CA3AF;">-</span></td>
+                      <td><span class="status-dot status-failed"></span>失败</td>
+                      <td>
+                          <div class="btn-action-group">
+                              <button class="btn-icon-sm open-drawer-btn" title="查看详情"><i class="fa-solid fa-eye"></i></button>
+                          </div>
+                      </td>
+                  </tr>
+
+                  <!-- Replicated Row 7 -->
+                  <tr>
+                      <td>2026-06-22 13:40:55</td>
+                      <td><span class="record-badge badge-run">运行</span></td>
+                      <td>
+                          <div class="project-name-cell">
+                              <div class="project-icon" style="width:28px;height:28px;font-size:12px;background:rgba(217, 119, 6, 0.1);color:#FBBF24;"><i class="fa-solid fa-video"></i></div>
+                              <span>短视频脚本创作</span>
+                          </div>
+                          <div style="font-size:12px;color:#9CA3AF;margin-top:4px;">夏季促销创意剧情...</div>
+                      </td>
+                      <td>
+                          <div class="creator-cell"><div class="small-avatar" style="background:#8B5CF6;">陈</div><span>陈七</span></div>
+                      </td>
+                      <td><span class="dept-tag hr">海外事业部</span></td>
+                      <td>
+                          <div class="num-val">1,850 Tk</div><div style="font-size:12px;color:#9CA3AF;">6.4s</div>
+                      </td>
+                      <td><div style="font-size:13px; font-weight:500; color:#1A1C29;">夏日大促季</div></td>
+                      <td><span class="status-dot status-success"></span>成功</td>
+                      <td>
+                          <div class="btn-action-group">
+                              <button class="btn-icon-sm open-drawer-btn" title="查看详情"><i class="fa-solid fa-eye"></i></button>
+                              <button class="btn-icon-sm" title="复制结果"><i class="fa-regular fa-copy"></i></button>
+                              <button class="btn-icon-sm" title="重新关联项目"><i class="fa-solid fa-link"></i></button>
+                          </div>
+                      </td>
+                  </tr>
+
+              </tbody>
+          </table>
+      </div>
+
+      <!-- Pagination -->
+      <div class="pagination">
+          <button class="page-btn" disabled><i class="fa-solid fa-chevron-left"></i></button>
+          <button class="page-btn active">1</button>
+          <button class="page-btn">2</button>
+          <button class="page-btn">3</button>
+          <span class="page-ellipsis">...</span>
+          <button class="page-btn">12</button>
+          <button class="page-btn"><i class="fa-solid fa-chevron-right"></i></button>
+      </div>
+
+    </main>
+  </div>
+
+  <!-- Drawer Component -->
+  <div class="drawer-overlay" id="drawerOverlay"></div>
+  <div class="drawer-container" id="detailDrawer">
+      <div class="drawer-header">
+          <div class="drawer-title">运行结果详情</div>
+          <button class="btn-close" id="closeDrawerBtn"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <div class="drawer-content">
+          
+          <div class="result-card">
+              <h4><i class="fa-solid fa-circle-info"></i> 基本信息</h4>
+              <div style="display:grid; grid-template-columns: 1fr 1fr; gap:16px; font-size:13px; color:#6B7280;">
+                  <div><strong>所属工具：</strong>推广图制作</div>
+                  <div><strong>员工：</strong>李四</div>
+                  <div><strong>开始时间：</strong>2026-06-29 09:15:00</div>
+                  <div><strong>耗时：</strong>45.2s</div>
+                  <div><strong>模型：</strong>Midjourney V6 / DALL-E 3</div>
+                  <div><strong>关联状态：</strong><span class="record-badge badge-linked" style="font-size:10px;padding:2px 6px;margin-left:4px;">已关联</span></div>
+              </div>
+          </div>
+
+          <div class="result-card">
+              <h4><i class="fa-solid fa-align-left"></i> 提示词输入 (Prompt)</h4>
+              <p style="font-size:13px; color:#6B7280; line-height:1.6; background:#F3F4F6; padding:12px; border-radius:8px; border:1px solid #E5E7EB;">
+                  生成4张夏季新品防晒霜的海报背景。要求：海滩、阳光、清爽、微距水滴、蓝天白云、高分辨率、极其真实的摄影质感。产品主体将放置在画面中央，请留白。
+              </p>
+          </div>
+
+          <div class="result-card">
+              <h4><i class="fa-solid fa-images"></i> 产出附件 (4)</h4>
+              <div class="img-preview-grid">
+                  <div class="img-preview" style="background-image: linear-gradient(45deg, #7DD3FC, #38BDF8);"></div>
+                  <div class="img-preview" style="background-image: linear-gradient(45deg, #FDE047, #FBBF24);"></div>
+                  <div class="img-preview" style="background-image: linear-gradient(45deg, #86EFAC, #4ADE80);"></div>
+                  <div class="img-preview" style="background-image: linear-gradient(45deg, #C4B5FD, #8B5CF6);"></div>
+              </div>
+              <div style="margin-top: 16px; text-align: right;">
+                  <button class="btn-outline-sm" style="font-size:13px; padding:6px 12px;"><i class="fa-solid fa-download"></i> 全部下载</button>
+              </div>
+          </div>
+
+          <div class="result-card">
+              <h4><i class="fa-solid fa-code"></i> 完整 JSON 返回</h4>
+              <div class="json-block">
+{
+  "toolKey": "promo-image-gen",
+  "status": "success",
+  "model": "mj-v6",
+  "images": [
+    "https://cdn.example.com/img1.png",
+    "https://cdn.example.com/img2.png",
+    "https://cdn.example.com/img3.png",
+    "https://cdn.example.com/img4.png"
+  ],
+  "cost": 0.12
+}
+              </div>
+          </div>
+
+      </div>
+      <div class="drawer-footer">
+          <button class="btn-outline-sm" style="font-size:14px; padding:10px 24px; border-radius:10px;" id="cancelDrawerBtn">关闭</button>
+          <button class="btn-primary"><i class="fa-solid fa-link"></i> 重新关联项目</button>
+      </div>
+  </div>
+
+  <script>
+      // Simple Drawer Toggle Script
+      const overlay = document.getElementById('drawerOverlay');
+      const drawer = document.getElementById('detailDrawer');
+      const openBtns = document.querySelectorAll('.open-drawer-btn');
+      const closeBtn = document.getElementById('closeDrawerBtn');
+      const cancelBtn = document.getElementById('cancelDrawerBtn');
+
+      function openDrawer() {
+          overlay.classList.add('active');
+          drawer.classList.add('active');
+      }
+
+      function closeDrawer() {
+          overlay.classList.remove('active');
+          drawer.classList.remove('active');
+      }
+
+      openBtns.forEach(btn => btn.addEventListener('click', openDrawer));
+      closeBtn.addEventListener('click', closeDrawer);
+      cancelBtn.addEventListener('click', closeDrawer);
+      overlay.addEventListener('click', closeDrawer);
+  </script>
+</body>
+</html>

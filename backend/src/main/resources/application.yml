@@ -1,0 +1,51 @@
+server:
+  port: ${SERVER_PORT:8080}
+  compression:
+    enabled: true
+    mime-types: application/json,text/html,text/xml,text/plain,text/css,application/javascript
+    min-response-size: 2KB
+spring:
+  application:
+    name: yiqi-ai-toolbench
+  servlet:
+    multipart:
+      # 品牌 HTML 不限制大小；普通附件仍由 StorageService 的 max-bytes 限制。
+      max-file-size: -1B
+      max-request-size: -1B
+  datasource:
+    url: ${SPRING_DATASOURCE_URL:jdbc:h2:file:./data/aitoolbench;MODE=PostgreSQL;DATABASE_TO_UPPER=false}
+    driver-class-name: ${SPRING_DATASOURCE_DRIVER:org.h2.Driver}
+    username: ${SPRING_DATASOURCE_USERNAME:sa}
+    password: ${SPRING_DATASOURCE_PASSWORD:}
+app:
+  relay:
+    group-id: ${APP_RELAY_GROUP_ID:0}
+    sync-delay-ms: ${APP_RELAY_SYNC_DELAY_MS:60000}
+  sub2api:
+    base-url: ${APP_SUB2API_BASE_URL:}
+    admin-api-key: ${APP_SUB2API_ADMIN_API_KEY:}
+    connect-timeout-seconds: ${APP_SUB2API_CONNECT_TIMEOUT_SECONDS:5}
+    request-timeout-seconds: ${APP_SUB2API_REQUEST_TIMEOUT_SECONDS:30}
+  tool-sessions:
+    service-credential: ${APP_TOOL_SESSIONS_SERVICE_CREDENTIAL:${APP_TOOL_SESSION_SERVICE_CREDENTIAL:}}
+  detail-page:
+    entry-url: ${APP_DETAIL_PAGE_ENTRY_URL:https://detailpage.sharpseek.cn/}
+  cloud-ai:
+    entry-url: ${APP_CLOUD_AI_ENTRY_URL:}
+  new-chat:
+    entry-url: ${APP_NEW_CHAT_ENTRY_URL:}
+  ai:
+    gateway-mode: ${APP_AI_GATEWAY_MODE:mock}
+    master-key: ${APP_AI_MASTER_KEY:}
+  storage:
+    mode: ${APP_STORAGE_MODE:local}
+    local-root: ${APP_STORAGE_LOCAL_ROOT:target/uploads}
+    public-origin: ${APP_STORAGE_PUBLIC_ORIGIN:http://localhost:8080}
+    max-bytes: ${APP_STORAGE_MAX_BYTES:20971520}
+    allowed-mime-types: ${APP_STORAGE_ALLOWED_MIME_TYPES:image/png,image/jpeg,image/webp,application/pdf,application/octet-stream}
+    remote-timeout-seconds: ${APP_STORAGE_REMOTE_TIMEOUT_SECONDS:30}
+    oss:
+      endpoint: ${APP_OSS_ENDPOINT:}
+      bucket: ${APP_OSS_BUCKET:}
+      access-key-id: ${APP_OSS_ACCESS_KEY_ID:}
+      access-key-secret: ${APP_OSS_ACCESS_KEY_SECRET:}
